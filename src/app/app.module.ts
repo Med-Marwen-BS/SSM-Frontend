@@ -10,6 +10,7 @@ import { ResetPasswordComponent } from './components/main/reset-password/reset-p
 import { AppRoutingModule } from './app-routing.module';
 import { TopbarComponent } from './components/reusable/topbar/topbar.component';
 import { TableTeamComponent } from './components/content/table-team/table-team.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TableTeamComponent } from './components/content/table-team/table-team.c
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
