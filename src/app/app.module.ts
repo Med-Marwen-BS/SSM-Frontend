@@ -11,6 +11,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { TopbarComponent } from './components/reusable/topbar/topbar.component';
 import { TableTeamComponent } from './components/content/table-team/table-team.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorProvider } from './http-interceptor.service';
+import { AddTeamComponent } from './components/content/team/add-team/add-team.component';
+import { ListTeamsComponent } from './components/content/team/list-teams/list-teams.component';
+
+
 
 @NgModule({
   declarations: [
@@ -21,14 +27,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoginComponent,
     ResetPasswordComponent,
     TopbarComponent,
-    TableTeamComponent
+    TableTeamComponent,
+    ListTeamsComponent,
+    AddTeamComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

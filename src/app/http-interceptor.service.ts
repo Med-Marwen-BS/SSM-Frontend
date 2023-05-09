@@ -18,13 +18,17 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     
-    const clonedRequest = request.clone({ headers: request.headers.append('Authorization',
-     `Bearer ${localStorage. getItem('token')}`) });
+    // const clonedRequest = request.clone({ headers: request.headers.append('Authorization',
+    //  `Bearer ${localStorage. getItem('token')}`) });
+     const clonedRequest = request.clone({ headers: request.headers.append('Authorization',
+     `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ3ZW5icyIsImlhdCI6MTY4MzY0NzYxMCwiZXhwIjoxNjgzNzkxNjEwfQ.BwGkPkhYYenY0Td6a-h8MO8njEbbLBTxYVKPXorPrVY`) });
+
+     
     
 
     //console.log(request.headers.get('Authorization'));
 
-  console.log(request.headers.get('Authorization'));
+    console.log(request.headers.get('Authorization'));
     return next.handle(clonedRequest);
   }
 

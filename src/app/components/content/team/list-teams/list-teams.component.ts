@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { TeamService } from 'src/app/services/team.service';
 
 @Component({
-  selector: 'app-table-team',
-  templateUrl: './table-team.component.html',
-  styleUrls: ['./table-team.component.css']
+  selector: 'app-list-teams',
+  templateUrl: './list-teams.component.html',
+  styleUrls: ['./list-teams.component.css']
 })
-export class TableTeamComponent implements OnInit {
+export class ListTeamsComponent implements OnInit{
+
   collectionSize:any = 0
   page:any = 1
   pageSize:any = 5
@@ -27,3 +28,4 @@ export class TableTeamComponent implements OnInit {
 	}
 
 }
+

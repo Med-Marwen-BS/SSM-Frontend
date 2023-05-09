@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    localStorage.setItem("token","eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ3ZW5icyIsImlhdCI6MTY4MzA0MDk4MSwiZXhwIjoxNjgzMTg0OTgxfQ.HLKX7rZ6Ge7KQBqkapFh_gaORxSwIpl_CQEhHv-H074")    
+    localStorage.setItem("token","eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ3ZW5icyIsImlhdCI6MTY4MzU4MjAwMCwiZXhwIjoxNjgzNzI2MDAwfQ.abBXO2xPbpH4Pyy6xUEyfBHtlSYDb6JhkrvJQoZcBW0")    
   }
   title = 'SSM';
   
