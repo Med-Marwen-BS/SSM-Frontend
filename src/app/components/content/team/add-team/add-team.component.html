@@ -1,1 +1,22 @@
-<p>add-team works!</p>
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Add Team</h1>
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="formGroupExampleInput">Name</label>
+            <input style="max-width: 500px;" type="text" class="form-control" id="name" placeholder="team1">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Country</label>
+            <input style="max-width: 500px;" type="text" class="form-control" id="country" placeholder="tunisie">
+        </div>
+    </form>
+    <button (click)="onSubmit()" type="button" class="btn btn-primary">Save</button>
+
+</div>
+
+
+<!-- /.container-fluid -->
