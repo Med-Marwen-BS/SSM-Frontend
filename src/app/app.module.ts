@@ -15,6 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorProvider } from './http-interceptor.service';
 import { AddTeamComponent } from './components/content/team/add-team/add-team.component';
 import { ListTeamsComponent } from './components/content/team/list-teams/list-teams.component';
+import { FormsModule } from '@angular/forms';
+import {ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 
 
@@ -35,7 +39,9 @@ import { ListTeamsComponent } from './components/content/team/list-teams/list-te
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,NgSelectModule
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

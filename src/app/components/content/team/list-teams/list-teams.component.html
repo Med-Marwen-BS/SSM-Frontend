@@ -23,6 +23,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Country</th>
+                            <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +38,10 @@
                                 {{ country.name }}
                             </td> -->
                             <td>{{ team.country}}</td>
+                            <td>
+                                <a class="edit" [routerLink]="['/addTeam',team.id]" title="Edit" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
+                                <!-- <a class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-edit"></i></a> -->
+                            </td>
                         </tr>
                     </tbody>
                 </table>

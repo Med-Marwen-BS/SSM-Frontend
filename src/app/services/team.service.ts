@@ -15,4 +15,8 @@ export class TeamService {
   addTeams(team:any): Observable<any> {
     return this.http.post<any>(environment.url_gateway+"team-service/team/save",team);
   }
+  getTeamById(id : string):Observable<any>{
+    return this.http.get<any>(environment.url_gateway+"team-service/team/get/"+id) ;
+  }
+
 }

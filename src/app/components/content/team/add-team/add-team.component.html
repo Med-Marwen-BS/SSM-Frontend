@@ -4,17 +4,30 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Add Team</h1>
     </div>
-    <form>
+    <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="formGroupExampleInput">Name</label>
-            <input style="max-width: 500px;" type="text" class="form-control" id="name" placeholder="team1">
+            <label for="globalName" *ngIf="!teamForm.controls['name'].invalid || !teamForm.controls['name'].touched">Name *</label>
+            <label style="color: rgba(255, 0, 0, 0.801);" for="globalName" *ngIf="teamForm.controls['name'].invalid && teamForm.controls['name'].touched">Name *</label>
+
+            <input formControlName="name"
+                [(ngModel)]="team.name"
+                style="max-width: 500px;" type="text" class="form-control" name="name" id="name" placeholder="team1">
         </div>
         <div class="form-group">
-            <label for="formGroupExampleInput2">Country</label>
-            <input style="max-width: 500px;" type="text" class="form-control" id="country" placeholder="tunisie">
+            <label for="globalName" *ngIf="!teamForm.controls['country'].invalid || !teamForm.controls['country'].touched">country *</label>
+            <label style="color: rgba(255, 0, 0, 0.801);" for="globalName" *ngIf="teamForm.controls['country'].invalid && teamForm.controls['country'].touched">country *</label>
+
+           <ng-select style="font-family: roboto;max-width: 500px;" [items]="countries"
+           formControlName="country"
+           name="country"
+           bindLabel="name"
+           placeholder=""
+           [(ngModel)]="team.country">
+            </ng-select>
         </div>
+        <button type="submit" class="btn btn-primary">Save</button>
     </form>
-    <button (click)="onSubmit()" type="button" class="btn btn-primary">Save</button>
+    
 
 </div>
 

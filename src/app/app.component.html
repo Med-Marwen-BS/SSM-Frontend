@@ -1,2 +1,2 @@
-<app-admin-vue></app-admin-vue>
-<!-- <router-outlet></router-outlet> -->
+<app-admin-vue *ngIf="isLoggedIn"></app-admin-vue>
+<router-outlet *ngIf="!isLoggedIn"></router-outlet>

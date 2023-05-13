@@ -1,0 +1,23 @@
+::ng-deep.ng-select-container {
+    /* border-bottom: 1px solid red !important; */
+    background: #fffffe !important;
+    border: 1px solid #ced4da !important;
+    /* min-height: 38px !important; */
+    border-radius: 0.375rem !important;
+    /* max-height: 38px !important; */
+    /* display: block !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    color: #212529 !important;
+    background-color: #fff !important;
+    background-clip: padding-box !important;
+    border: 1px solid #ced4da !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    border-radius: 0.375rem !important;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out  !important; */
+
+    padding-left: 10px !important;
+    /* width: 200px !important;
+    height: 150px !important; */
+ }

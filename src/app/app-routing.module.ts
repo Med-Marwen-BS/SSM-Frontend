@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'addTeam', component:AddTeamComponent },
+  { path: 'addTeam/:id', component:AddTeamComponent },
   { path: 'listTeam', component:ListTeamsComponent },
 ];
 
