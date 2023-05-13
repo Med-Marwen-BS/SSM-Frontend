@@ -12,12 +12,19 @@ export class AuthService {
 
   
   constructor(private http : HttpClient) { }
-  
+
   register(registerRequest:RegisterRequest): Observable<any> {
     return this.http.post<any>(environment.url_gateway+"user-service/auth/register",registerRequest);
   }
   login(loginReq:LoginReq): Observable<any> {
     return this.http.post<any>(environment.url_gateway+"user-service/auth/signIn",loginReq);
+  }
+  logout(){
+    localStorage.removeItem('token');
+  }
+  isLogged():boolean{
+    
+    return localStorage.getItem('token')?true:false;
   }
 }
 

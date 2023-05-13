@@ -20,13 +20,13 @@ export class HttpInterceptorService implements HttpInterceptor {
     
     // const clonedRequest = request.clone({ headers: request.headers.append('Authorization',
     //  `Bearer ${localStorage. getItem('token')}`) });
-     const clonedRequest = request.clone(
-      { headers: request.headers.append('Authorization',
-     `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ3ZW5icyIsImlhdCI6MTY4Mzk4OTE1NSwiZXhwIjoxNjg0MTMzMTU1fQ.ZE_7A99ewImT2QFZ6OAJKro-cZwERBbA3kcHFPGIf9U`) }
-     );
-
-     
-    
+    let clonedRequest = request.clone();
+    if(localStorage.getItem('token')){
+      clonedRequest = request.clone(
+        { headers: request.headers.append('Authorization',
+       `Bearer ${localStorage.getItem('token')}`) }
+       );
+    }
 
     //console.log(request.headers.get('Authorization'));
 

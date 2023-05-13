@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginReq } from 'src/app/models/LoginReq.model';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   })
 
 
-  constructor(private authService:AuthService){}
+  constructor(private authService:AuthService,private router:Router){}
   ngOnInit(): void {
    
   }
@@ -33,6 +34,8 @@ export class LoginComponent implements OnInit {
     
     this.authService.login(this.loginReq).subscribe(data=>{
       console.log(data);
+      localStorage.setItem('token',data.token)
+      this.router.navigate(['/']).then(()=> window.location.reload())
       
     })
   }
