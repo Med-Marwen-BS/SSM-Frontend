@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
     console.log(this.isLoggedIn);
-    if(!this.isLoggedIn) this.route.navigate(['/login'])
+    // if(!this.isLoggedIn) this.route.navigate(['/login'])
     //localStorage.setItem("token","eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ3ZW5icyIsImlhdCI6MTY4MzU4MjAwMCwiZXhwIjoxNjgzNzI2MDAwfQ.abBXO2xPbpH4Pyy6xUEyfBHtlSYDb6JhkrvJQoZcBW0")    
   }
   title = 'SSM';
