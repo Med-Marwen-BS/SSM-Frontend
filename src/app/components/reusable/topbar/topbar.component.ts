@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,9 +9,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class TopbarComponent {
 
-  constructor(private authService:AuthService){}
+
+  constructor(private authService:AuthService,private router:Router){}
   logout(){
     this.authService.logout();
+    window.location.reload()
+    //this.router.navigate(['/']).then(()=> window.location.reload())
   }
 
 }

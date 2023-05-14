@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgSelectConfig } from '@ng-select/ng-select';
 import { countries } from 'src/app/components/store/country-data-store';
+import { AuthService } from 'src/app/services/auth.service';
 import { TeamService } from 'src/app/services/team.service';
 
 @Component({
@@ -15,6 +16,8 @@ export class AddTeamComponent implements OnInit {
   team!:any;
   selectedCountry!:string;
   public countries:any = countries
+  isLoggedIn = true;
+
 
   teamForm = new FormGroup({
     name : new FormControl('',[Validators.required]),
@@ -23,8 +26,12 @@ export class AddTeamComponent implements OnInit {
   })
 
 
-  constructor(private teamService:TeamService,private activatedroute:ActivatedRoute,private config: NgSelectConfig){}
+  constructor(private teamService:TeamService,private activatedroute:ActivatedRoute,private config: NgSelectConfig,
+    private  authService:AuthService,private router:Router){}
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLogged();
+    if(!this.isLoggedIn) this.router.navigate(['/login'])
+
     this.config.notFoundText = 'Custom not found';
     this.config.appendTo = 'body';
     // set the bindValue to global config when you use the same 

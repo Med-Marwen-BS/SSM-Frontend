@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { TeamService } from 'src/app/services/team.service';
 
 @Component({
@@ -12,8 +14,13 @@ export class ListTeamsComponent implements OnInit{
   page:any = 1
   pageSize:any = 5
   teams!: any[];
-  constructor(private teamService : TeamService ){}
+  isLoggedIn = true;
+
+  constructor(private teamService : TeamService ,private  authService:AuthService,private router:Router){}
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLogged();
+    if(!this.isLoggedIn) this.router.navigate(['/login'])
+
     this.teamService.getTeams().subscribe(teamsList=>{
       console.log(teamsList);
       

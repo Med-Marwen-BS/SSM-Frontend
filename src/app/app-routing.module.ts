@@ -10,7 +10,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'addTeam', component:AddTeamComponent },
   { path: 'addTeam/:id', component:AddTeamComponent },
+  { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'listTeam', component:ListTeamsComponent },
+  // { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

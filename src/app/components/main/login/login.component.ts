@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginReq } from 'src/app/models/LoginReq.model';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  isLoggedIn = true;
+
 
   loginReq:any={
     username:"",
@@ -25,6 +29,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService:AuthService,private router:Router){}
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLogged();
+    if(this.isLoggedIn) this.router.navigate(['/listTeam'])
    
   }
 
@@ -37,7 +43,16 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token',data.token)
       this.router.navigate(['/']).then(()=> window.location.reload())
       
-    })
+     } ,err=>{
+        console.log(err);
+        
+        Swal.fire({
+        title:'username or password incorrect!',
+        text: '',
+        icon: 'error',
+        confirmButtonText: 'ok'
+      })},()=>{
+      })
   }
 
 }

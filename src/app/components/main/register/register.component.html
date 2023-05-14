@@ -15,35 +15,50 @@
                             <form class="user" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                        name="firstName"
-                                                formControlName="firstName"
-                                                [(ngModel)]="registerReq.firstName"
-                                            placeholder="First Name">
+                                        <input
+                                            [ngClass]="{'is-invalid':registerForm.controls['firstName'].invalid && registerForm.controls['firstName'].touched}"
+                                            type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            name="firstName" formControlName="firstName"
+                                            [(ngModel)]="registerReq.firstName" placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                        name="lastName"
-                                                formControlName="lastName"
-                                                [(ngModel)]="registerReq.lastName"
+                                        <input type="text"
+                                            [ngClass]="{'is-invalid':registerForm.controls['lastName'].invalid && registerForm.controls['lastName'].touched}"
+                                            class="form-control form-control-user" id="exampleLastName" name="lastName"
+                                            formControlName="lastName" [(ngModel)]="registerReq.lastName"
                                             placeholder="Last Name">
+
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                    name="email"
-                                                formControlName="email"
-                                                [(ngModel)]="registerReq.email"
+                                    <input
+                                        [ngClass]="{'is-invalid':registerForm.controls['email'].invalid && registerForm.controls['email'].touched}"
+                                        type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                        name="email" formControlName="email" [(ngModel)]="registerReq.email"
                                         placeholder="Email Address">
+                                </div>
+                                <div class="form-group">
+                                    <input
+                                        [ngClass]="{'is-invalid':registerForm.controls['username'].invalid && registerForm.controls['username'].touched}"
+                                        type="text" class="form-control form-control-user" id="exampleInputEmail"
+                                        name="username" formControlName="username" [(ngModel)]="registerReq.username"
+                                        placeholder="username">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                        <input
+                                            [ngClass]="{'is-invalid':registerForm.controls['password'].invalid && registerForm.controls['password'].touched}"
+                                            type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Password" name="password"
+                                            formControlName="password" [(ngModel)]="registerReq.password">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                        <input
+                                            [ngClass]="{'is-invalid':registerForm.controls['confirm_password'].invalid && registerForm.controls['confirm_password'].touched}"
+                                            type="password" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Repeat Password"
+                                            name="confirm_password" formControlName="confirm_password"
+                                            [(ngModel)]="registerReq.confirm_password">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
@@ -62,7 +77,7 @@
                                 <a class="small" href="forgot-password.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <a class="small" [routerLink]="'/login'">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>

@@ -9,16 +9,17 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   isLoggedIn = true;
+  title = 'SSM';
 
-
-  constructor(private authService:AuthService,private route:Router){
+  constructor(private authService:AuthService,private router:Router){
   }
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
     console.log(this.isLoggedIn);
-    // if(!this.isLoggedIn) this.route.navigate(['/login'])
-    //localStorage.setItem("token","eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJ3ZW5icyIsImlhdCI6MTY4MzU4MjAwMCwiZXhwIjoxNjgzNzI2MDAwfQ.abBXO2xPbpH4Pyy6xUEyfBHtlSYDb6JhkrvJQoZcBW0")    
+    const url:string=this.router.url;
+    console.log(url);
+    
   }
-  title = 'SSM';
+  
   
 }

@@ -16,41 +16,61 @@ export class RegisterComponent implements OnInit{
     email : "",
     username : "",
     password: "",
-    role : "UTILISATEUR",
-    sexe : ""
+    confirm_password:"",
+    role : "USER",
+    sexe : "HOMME"
   };
+  isLoggedIn = true;
+
 
   registerForm = new FormGroup({
     username : new FormControl('',[Validators.required]),
     password : new FormControl('',Validators.required),
+    confirm_password : new FormControl('',Validators.required),
     firstName : new FormControl('',Validators.required),
     lastName : new FormControl('',Validators.required),
     email :new FormControl('',Validators.required),
-    sexe : new FormControl('',Validators.required)
+    // sexe : new FormControl('',Validators.required)
     
   })
   
   constructor(private authService:AuthService,private router:Router){}
   ngOnInit(): void {
-   
+    this.isLoggedIn = this.authService.isLogged();
+    if(this.isLoggedIn) this.router.navigate(['/listTeam'])
+
   }
 
   onSubmit(){
-    console.log(this.registerForm.get("username"));
-    console.log(this.registerReq);
-    
-    this.authService.register(this.registerReq).subscribe(data=>{
-      console.log(data);
-      localStorage.setItem('token',data.token)
-      this.router.navigate(['/']).then(()=> window.location.reload())
+    if(this.registerReq.password !== this.registerReq.confirm_password ){
+      this.registerForm.controls['confirm_password'].setErrors({'incorrect': true});
+    }
+    if(this.registerForm.valid){
+      console.log(this.registerForm.get("username"));
+      console.log(this.registerReq);
       
-    },err=>{Swal.fire({
-      title: 'Error!',
-      text: 'Do you want to continue',
-      icon: 'error',
-      confirmButtonText: 'ok'
-    })},()=>{
-    })
+      this.authService.register(this.registerReq).subscribe(data=>{
+        console.log(data);
+        localStorage.setItem('token',data.token)
+        this.router.navigate(['/']).then(()=> window.location.reload())
+        
+      },err=>{
+        console.log(err);
+        
+        Swal.fire({
+        title: err.error.errorMessage+'!',
+        text: '',
+        icon: 'error',
+        confirmButtonText: 'ok'
+      })},()=>{
+      })
+    }else{
+      console.log("notvalid");
+      
+      this.registerForm.markAllAsTouched();
+
+    }
+
   }
 
 }

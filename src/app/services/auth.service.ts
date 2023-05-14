@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginReq } from '../models/LoginReq.model';
 import { RegisterRequest } from '../models/RegisterReq.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
