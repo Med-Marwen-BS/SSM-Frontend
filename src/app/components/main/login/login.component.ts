@@ -37,22 +37,31 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     console.log(this.loginForm.get("username"));
     console.log(this.loginReq);
-    
-    this.authService.login(this.loginReq).subscribe(data=>{
-      console.log(data);
-      localStorage.setItem('token',data.token)
-      this.router.navigate(['/']).then(()=> window.location.reload())
-      
-     } ,err=>{
-        console.log(err);
+    if(this.loginForm.valid){
+      this.authService.login(this.loginReq).subscribe(data=>{
+        console.log(data);
+  
+        this.authService.setLoginInformations(data.token,this.loginReq.username);
+  
+        this.router.navigate(['/']).then(()=> window.location.reload())
         
-        Swal.fire({
-        title:'username or password incorrect!',
-        text: '',
-        icon: 'error',
-        confirmButtonText: 'ok'
-      })},()=>{
-      })
+       } ,err=>{
+          console.log(err);
+          
+          Swal.fire({
+          title:'username or password incorrect!',
+          text: '',
+          icon: 'error',
+          confirmButtonText: 'ok'
+        })},()=>{
+        })
+    }else{
+      console.log("notvalid");
+      
+      this.loginForm.markAllAsTouched();
+
+    }
+    
   }
 
 }

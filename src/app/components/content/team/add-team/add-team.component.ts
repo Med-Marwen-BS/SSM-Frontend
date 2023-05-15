@@ -13,7 +13,11 @@ import { TeamService } from 'src/app/services/team.service';
 })
 export class AddTeamComponent implements OnInit {
   id!:any ;
-  team!:any;
+  team:any={
+    name:"",
+    country:"",
+    creator:{}
+  };
   selectedCountry!:string;
   public countries:any = countries.map(c=>c.name);
   isLoggedIn = true;
@@ -30,8 +34,16 @@ export class AddTeamComponent implements OnInit {
     private  authService:AuthService,private router:Router){}
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
+    let username =localStorage.getItem('username');
+    this.authService.getUserByUsername(username).subscribe(data=>{
+      this.team.creator =data.data 
+    });
 
-    //if(!this.isLoggedIn) this.router.navigate(['/login'])
+    this.authService.getUserByToken().subscribe(data=>{
+      console.log(data);
+    });
+
+    if(!this.isLoggedIn) this.router.navigate(['/login'])
     
     this.config.notFoundText = 'Custom not found';
     this.config.appendTo = 'body';
@@ -50,9 +62,10 @@ export class AddTeamComponent implements OnInit {
         this.team = data;
         //this.team.country=countries.find(c=>c.name===data.country)
       });
-    }else{
-      this.team={id:this.id,name:"",country:""};
     }
+    // else{
+    //   this.team={id:this.id,name:"",country:""};
+    // }
   }
 
   update(e:any){
@@ -60,18 +73,27 @@ export class AddTeamComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log("test");
-    if(this.id==null){
-      this.teamService.addTeams({name:this.team.name,country:this.team.country}).subscribe(data=>{
-        console.log(data);
-        
-      })
+    console.log(this.team.creator);
+
+    if(this.teamForm.valid){
+      if(this.id==null){
+        this.teamService.addTeam({name:this.team.name,country:this.team.country,creatorId:this.team.creator.id}).subscribe(data=>{
+          console.log(data);
+          
+        })
+      }else{
+        this.teamService.updateTeam({id:this.team.id,name:this.team.name,country:this.team.country,creatorId:""}).subscribe(data=>{
+          console.log(data);
+          
+        })
+      }
     }else{
-      this.teamService.addTeams({id:this.team.id,name:this.team.name,country:this.team.country.name}).subscribe(data=>{
-        console.log(data);
-        
-      })
+      console.log("notvalid");
+      
+      this.teamForm.markAllAsTouched();
+
     }
+
  
   }
 
