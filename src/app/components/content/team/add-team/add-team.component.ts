@@ -15,7 +15,7 @@ export class AddTeamComponent implements OnInit {
   id!:any ;
   team!:any;
   selectedCountry!:string;
-  public countries:any = countries
+  public countries:any = countries.map(c=>c.name);
   isLoggedIn = true;
 
 
@@ -30,8 +30,9 @@ export class AddTeamComponent implements OnInit {
     private  authService:AuthService,private router:Router){}
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
-    if(!this.isLoggedIn) this.router.navigate(['/login'])
 
+    //if(!this.isLoggedIn) this.router.navigate(['/login'])
+    
     this.config.notFoundText = 'Custom not found';
     this.config.appendTo = 'body';
     // set the bindValue to global config when you use the same 
@@ -47,11 +48,15 @@ export class AddTeamComponent implements OnInit {
     if(this.id!=null){
       this.teamService.getTeamById(this.id).subscribe(data=>{
         this.team = data;
-        this.team.country=countries.find(c=>c.name===data.country)
+        //this.team.country=countries.find(c=>c.name===data.country)
       });
     }else{
       this.team={id:this.id,name:"",country:""};
     }
+  }
+
+  update(e:any){
+    this.team.country = e.target.value
   }
 
   onSubmit(){

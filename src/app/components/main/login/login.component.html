@@ -22,6 +22,7 @@
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
+                                                [ngClass]="{'is-invalid':loginForm.controls['username'].invalid && loginForm.controls['username'].touched}"
                                                 placeholder="Enter Username..."
                                                 name="username"
                                                 formControlName="username"
@@ -29,6 +30,7 @@
                                         </div>
                                         <div class="form-group">                                
                                             <input type="password" class="form-control form-control-user"
+                                                [ngClass]="{'is-invalid':loginForm.controls['password'].invalid && loginForm.controls['password'].touched}"
                                                 id="exampleInputPassword" placeholder="Password"
                                                 name="password"
                                                 formControlName="password"

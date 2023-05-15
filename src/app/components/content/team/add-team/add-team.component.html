@@ -6,15 +6,14 @@
     </div>
     <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="globalName" *ngIf="!teamForm.controls['name'].invalid || !teamForm.controls['name'].touched">Name *</label>
-            <label style="color: rgba(255, 0, 0, 0.801);" for="globalName" *ngIf="teamForm.controls['name'].invalid && teamForm.controls['name'].touched">Name *</label>
-
+            <label for="globalName">Name*</label>
             <input formControlName="name"
+            [ngClass]="{'is-invalid':teamForm.controls['name'].invalid && teamForm.controls['name'].touched}"
                 [(ngModel)]="team.name"
-                style="max-width: 500px;" type="text" class="form-control" name="name" id="name" placeholder="team1">
+                style="max-width: 500px;" type="text" class="form-control" name="name" id="name" placeholder="Team Name">
         </div>
         <div class="form-group">
-            <label for="globalName" *ngIf="!teamForm.controls['country'].invalid || !teamForm.controls['country'].touched">country *</label>
+            <!-- <label for="globalName" *ngIf="!teamForm.controls['country'].invalid || !teamForm.controls['country'].touched">country *</label>
             <label style="color: rgba(255, 0, 0, 0.801);" for="globalName" *ngIf="teamForm.controls['country'].invalid && teamForm.controls['country'].touched">country *</label>
 
            <ng-select style="font-family: roboto;max-width: 500px;" [items]="countries"
@@ -23,7 +22,16 @@
            bindLabel="name"
            placeholder=""
            [(ngModel)]="team.country">
-            </ng-select>
+            </ng-select> -->
+            <label for="validationDefault04" class="form-label">Country*</label>
+            <select style="max-width: 500px;" formControlName="country" name="country" (change)="update($event)"
+            [ngClass]="{'is-invalid':teamForm.controls['country'].invalid && teamForm.controls['country'].touched}"
+            [(ngModel)]="team.country" class="form-select" id="validationDefault04" required>
+              <option selected disabled value="">Choose...</option>
+              <option *ngFor="let country of countries" [value]="country">
+                {{country}}
+            </option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
