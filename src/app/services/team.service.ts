@@ -13,7 +13,7 @@ export class TeamService {
     return this.http.get<any>(environment.url_gateway+"team-service/team/getAll");
   }
   addTeam(team:any): Observable<any> {
-    return this.http.post<any>(environment.url_gateway+"team-service/team/save",team);
+    return this.http.post<any>(environment.url_gateway+"team-service/team/save/"+localStorage.getItem('username'),team);
   }
   updateTeam(team:any): Observable<any> {
     return this.http.put<any>(environment.url_gateway+"team-service/team/update",team);

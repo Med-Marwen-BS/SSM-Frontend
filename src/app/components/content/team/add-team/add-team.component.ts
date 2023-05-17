@@ -5,6 +5,7 @@ import { NgSelectConfig } from '@ng-select/ng-select';
 import { countries } from 'src/app/components/store/country-data-store';
 import { AuthService } from 'src/app/services/auth.service';
 import { TeamService } from 'src/app/services/team.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-team',
@@ -16,7 +17,7 @@ export class AddTeamComponent implements OnInit {
   team:any={
     name:"",
     country:"",
-    creator:{}
+    creator:""
   };
   selectedCountry!:string;
   public countries:any = countries.map(c=>c.name);
@@ -35,13 +36,7 @@ export class AddTeamComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
     let username =localStorage.getItem('username');
-    this.authService.getUserByUsername(username).subscribe(data=>{
-      this.team.creator =data.data 
-    });
-
-    this.authService.getUserByToken().subscribe(data=>{
-      console.log(data);
-    });
+  
 
     if(!this.isLoggedIn) this.router.navigate(['/login'])
     
@@ -62,6 +57,11 @@ export class AddTeamComponent implements OnInit {
         this.team = data;
         //this.team.country=countries.find(c=>c.name===data.country)
       });
+    }else{
+      this.authService.getUserByToken().subscribe(data=>{
+        this.team.creatorId =data.data.id 
+      });
+  
     }
     // else{
     //   this.team={id:this.id,name:"",country:""};
@@ -77,15 +77,46 @@ export class AddTeamComponent implements OnInit {
 
     if(this.teamForm.valid){
       if(this.id==null){
-        this.teamService.addTeam({name:this.team.name,country:this.team.country,creatorId:this.team.creator.id}).subscribe(data=>{
+        this.teamService.addTeam({name:this.team.name,country:this.team.country,creatorId:this.team.creatorId}).subscribe(data=>{
+          Swal.fire({
+            title:'success!',
+            text: '',
+            icon: 'success',
+            confirmButtonText: 'ok'
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              this.router.navigate(['myTeam'])
+            }
+          })
+          
           console.log(data);
           
-        })
+        },(err)=>{
+          Swal.fire({
+            title:'Team with the same name and country exist!',
+            text: '',
+            icon: 'error',
+            confirmButtonText: 'ok'
+          })
+        },()=>{})
       }else{
         this.teamService.updateTeam({id:this.team.id,name:this.team.name,country:this.team.country,creatorId:""}).subscribe(data=>{
-          console.log(data);
+          Swal.fire({
+            title:'success!',
+            text: '',
+            icon: 'success',
+            confirmButtonText: 'ok'
+          })
           
-        })
+        },(err)=>{
+          Swal.fire({
+            title:'Team with the same name and country exist!',
+            text: '',
+            icon: 'error',
+            confirmButtonText: 'ok'
+          })
+        },()=>{})
       }
     }else{
       console.log("notvalid");

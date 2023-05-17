@@ -18,6 +18,7 @@ import { ListTeamsComponent } from './components/content/team/list-teams/list-te
 import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { MyTeamComponent } from './components/content/team/my-team/my-team.component';
 
 
 
@@ -33,7 +34,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     TopbarComponent,
     TableTeamComponent,
     ListTeamsComponent,
-    AddTeamComponent
+    AddTeamComponent,
+    MyTeamComponent
   ],
   imports: [
     BrowserModule,

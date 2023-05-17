@@ -21,11 +21,20 @@ export class AuthService {
     return this.http.post<any>(environment.url_gateway+"user-service/auth/signIn",loginReq);
   }
 
+  addTeamToUser(teamId:string,email:string): Observable<any> {
+    return this.http.post<any>(environment.url_gateway+"user-service/addTeamToUser",{teamId:teamId,email:email});
+  }
   getUserByUsername(username:any): Observable<any> {
     return this.http.get<any>(environment.url_gateway+"user-service/getByUsername/"+username);
   }
   getUserByToken(): Observable<any> {
     return this.http.get<any>(environment.url_gateway+"user-service/getByToken");
+  }
+  isTokenExpired(): Observable<any> {
+    return this.http.get<any>(environment.url_gateway+"user-service/isTokenExpired");
+  }
+  leaveTeam(): Observable<any> {
+    return this.http.get<any>(environment.url_gateway+"user-service/leaveTeam");
   }
   
   setLoginInformations(token:string,username:string){

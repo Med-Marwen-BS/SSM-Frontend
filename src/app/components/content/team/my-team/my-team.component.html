@@ -1,0 +1,53 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div *ngIf="team == null" class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">You Need To  Join To A Team Or Create Your Team</h1>
+        <div>
+            <a style="margin-right: 2px;" [routerLink]="['/addTeam']" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i>Create Team</a>
+        </div>
+
+    </div>
+
+    <!-- Page Heading -->
+    <div *ngIf="team != null" class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">My Team</h1>
+        <div>
+            <a style="margin-right: 2px;" (click)="addTeamToUser()"
+                class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Add User </a>
+        </div>
+    </div>
+    <form *ngIf="team != null" [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="globalName">Name*</label>
+            <input formControlName="name"
+                [ngClass]="{'is-invalid':teamForm.controls['name'].invalid && teamForm.controls['name'].touched}"
+                [readOnly]="!isCreator()"
+                [ngStyle]="!isCreator() ?{'pointer-events': 'none'}: {'cursor': 'default'}"
+                [(ngModel)]="team.name" style="max-width: 500px;" type="text" class="form-control" name="name" id="name"
+                placeholder="Team Name">
+        </div>
+        <div class="form-group">
+            <label for="validationDefault04" class="form-label">Country*</label>
+            <select style="max-width: 500px;" formControlName="country" name="country" (change)="update($event)"
+                [ngClass]="{'is-invalid':teamForm.controls['country'].invalid && teamForm.controls['country'].touched}"
+                [ngStyle]="!isCreator() ?{'pointer-events': 'none'}: {'cursor': 'default'}"
+                [(ngModel)]="team.country" class="form-select" id="validationDefault04" required>
+                <option selected disabled value="">Choose...</option>
+                <option *ngFor="let country of countries" [value]="country">
+                    {{country}}
+                </option>
+            </select>
+        </div>
+        <button *ngIf="isCreator()" (click)="onSubmit()" type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+    <p><a *ngIf="!isCreator() && team!= null" (click)="leaveTeam()" class="link-danger">Leave Team</a></p>
+
+
+</div>
+
+
+<!-- /.container-fluid -->
