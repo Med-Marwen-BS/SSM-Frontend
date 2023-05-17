@@ -19,6 +19,9 @@ import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MyTeamComponent } from './components/content/team/my-team/my-team.component';
+import { AddCategoryComponent } from './components/content/category/add-category/add-category.component';
+import { ListCategoriesComponent } from './components/content/category/list-categories/list-categories.component';
+import { AddPlayerComponent } from './components/content/player/add-player/add-player.component';
 
 
 
@@ -35,7 +38,10 @@ import { MyTeamComponent } from './components/content/team/my-team/my-team.compo
     TableTeamComponent,
     ListTeamsComponent,
     AddTeamComponent,
-    MyTeamComponent
+    MyTeamComponent,
+    AddCategoryComponent,
+    ListCategoriesComponent,
+    AddPlayerComponent
   ],
   imports: [
     BrowserModule,
