@@ -11,10 +11,11 @@
     <div class="row g-2">
         <div *ngFor="let player of playerList" class="col-4">
             <div class="card" style="width: 18rem;">
-                <img [routerLink]="['/addPlayer',category.id,player.id]" src="https://www.w3schools.com/howto/img_avatar.png" class="card-img-top" alt="...">
+                <img [routerLink]="['/addPlayer',category.id,player.id]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">{{player.firstName}}</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h5 class="card-title">{{player.firstName}} {{player.lastName}}</h5>
+                  <p class="card-text">Position : {{ player.position }}</p>
+                  <p class="card-text">Birthdate : {{ player.birthdate }}</p>
                 </div>
             </div>
         </div>

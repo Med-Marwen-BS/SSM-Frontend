@@ -12,7 +12,16 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient) { 
+    if(this.isLogged()){
+      this.isTokenExpired().subscribe(data=>{
+        console.log(data);
+        if(data.data == false) console.log("works");
+        else if(data.data == true) this.logout();
+      })
+    }
+
+   }
 
   register(registerRequest:RegisterRequest): Observable<any> {
     return this.http.post<any>(environment.url_gateway+"user-service/auth/register",registerRequest);
@@ -45,6 +54,8 @@ export class AuthService {
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('username');
+    window.location.reload()
+
   }
   isLogged():boolean{
     
