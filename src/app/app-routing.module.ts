@@ -21,7 +21,8 @@ const routes: Routes = [
   { path: 'addCategory/:id', component:AddCategoryComponent },
   { path: 'listCategories', component:ListCategoriesComponent },
   { path: 'addPlayer', component:AddPlayerComponent },
-  { path: 'addPlayer/:id', component:AddPlayerComponent },
+  { path: 'addPlayer/:categotyId', component:AddPlayerComponent },
+  { path: 'addPlayer/:categotyId/:playerId', component:AddPlayerComponent },
   // { path: '**', component: PageNotFoundComponent },
 ];
 

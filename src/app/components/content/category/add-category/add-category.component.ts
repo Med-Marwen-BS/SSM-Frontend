@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgSelectConfig } from '@ng-select/ng-select';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'app-add-category',
@@ -14,8 +15,9 @@ export class AddCategoryComponent implements OnInit {
   id!:any ;
   isLoggedIn = true;
   category!:any;
+  playerList!:any;
 
-  constructor(private categoryService:CategoryService,private activatedroute:ActivatedRoute,private config: NgSelectConfig,
+  constructor(private playerService:PlayerService,private categoryService:CategoryService,private activatedroute:ActivatedRoute,private config: NgSelectConfig,
     private  authService:AuthService,private router:Router){}
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
@@ -25,6 +27,9 @@ export class AddCategoryComponent implements OnInit {
     if(this.id!=null){
       this.categoryService.getCategoryById(this.id).subscribe(data=>{
         this.category = data;
+        this.playerService.getPlayers(this.id).subscribe(data=>{
+          this.playerList=data
+        })
         //this.team.country=countries.find(c=>c.name===data.country)
       });
     }

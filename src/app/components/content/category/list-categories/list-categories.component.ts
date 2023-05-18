@@ -25,19 +25,20 @@ export class ListCategoriesComponent implements OnInit {
     this.isLoggedIn = this.authService.isLogged();
     if (!this.isLoggedIn) this.router.navigate(['/login'])
 
-    this.categoryService.getCategories().subscribe(categoriesList => {
-      console.log(categoriesList);
-
-      this.categoriesList = categoriesList.reverse();
-      this.collectionSize = this.categoriesList.length
-    })
-
     this.authService.getUserByToken().subscribe(data => {
       this.user = data.data;
       this.team = data.data.team
 
-      console.log(data);
+      this.categoryService.getCategories(this.team.id).subscribe(categoriesList => {
+        console.log(categoriesList);
+  
+        this.categoriesList = categoriesList.reverse();
+        this.collectionSize = this.categoriesList.length
+      })
     });
+
+
+
   }
 
 

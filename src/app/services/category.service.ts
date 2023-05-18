@@ -10,8 +10,8 @@ export class CategoryService {
 
   constructor(private http : HttpClient) { }
 
-  getCategories(): Observable<any> {
-    return this.http.get<any>(environment.url_gateway+"team-service/category/getAll");
+  getCategories(teamId:any): Observable<any> {
+    return this.http.get<any>(environment.url_gateway+"team-service/category/getAll/"+teamId);
   }
   addCategory(category:any): Observable<any> {
     return this.http.post<any>(environment.url_gateway+"team-service/category/save",category);

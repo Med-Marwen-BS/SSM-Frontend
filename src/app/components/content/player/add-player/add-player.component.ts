@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { PlayerService } from 'src/app/services/player.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-player',
@@ -12,45 +15,110 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AddPlayerComponent {
   model!:any;
   isLoggedIn = true;
+  categotyId!:any
+  playerId!:any
 
   player:any={
     firstName:"",
     lastName:"",
     email:"",
-    birthDate:"",
+    birthdate:"",
     phoneNumber:"",
     height:"",
     width:"",
-    sexe:""
-    };
+    position:"",
+    // sexe:"",
+    category:null
+  };
 
   playerForm = new FormGroup({
     firstName : new FormControl('',[Validators.required]),
     lastName : new FormControl('',Validators.required),
     email : new FormControl('',Validators.required),
-    birthDate : new FormControl('',Validators.required),
+    birthdate : new FormControl('',Validators.required),
     phoneNumber : new FormControl('',Validators.required),
     height : new FormControl('',Validators.required),
     width : new FormControl('',Validators.required),
-    sexe : new FormControl('',Validators.required),
+    position : new FormControl('',Validators.required),
+    // sexe : new FormControl('',Validators.required),
     
   })
 
-  constructor(private authService:AuthService,private router:Router){}
+  constructor(private playerService:PlayerService,private categoryService:CategoryService,private authService:AuthService,private router:Router,private activatedroute:ActivatedRoute){}
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
     //if(this.isLoggedIn) this.router.navigate(['/listTeam'])
+    this.categotyId=this.activatedroute.snapshot.params['categotyId'];
+    this.playerId=this.activatedroute.snapshot.params['playerId'];
+    if(this.categotyId!=null){
+      this.categoryService.getCategoryById(this.categotyId).subscribe(data=>{
+        this.player.category = data;
+        
+        if(this.playerId!=null){
+          this.playerService.getPlayerById(this.playerId).subscribe(data=>{
+            this.player=data
+            
+          })
+        }
+        //this.team.country=countries.find(c=>c.name===data.country)
+      });
+    }
    
   }
 
   onSubmit(){
+    //this.player.birthDate = '1995-11-11'
+    console.log(this.player);
+    
+    if(this.playerId==null){
+      if(this.playerForm.valid){
+        this.playerService.addPlayer(this.player).subscribe(data=>{
+          Swal.fire({
+            title:'Created Successefuly!',
+            text: '',
+            icon: 'success',
+            confirmButtonText: 'ok'
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              this.router.navigate(['addPlayer',this.categotyId,data.id])
+            }
+          })
+        },err=>{
+          Swal.fire({
+            title:'Error!',
+            text: '',
+            icon: 'error',
+            confirmButtonText: 'ok'
+          })
+        })
+      }else{
+        this.playerForm.markAllAsTouched();
 
-    if(this.playerForm.valid){
-        
+      }
     }else{
-      this.playerForm.markAllAsTouched();
+      if(this.playerForm.valid){
+        this.playerService.updatePlayer(this.player).subscribe(data=>{
+          Swal.fire({
+            title:'Updated Successefuly!',
+            text: '',
+            icon: 'success',
+            confirmButtonText: 'ok'
+          })
+        },err=>{
+          Swal.fire({
+            title:'Error!',
+            text: '',
+            icon: 'error',
+            confirmButtonText: 'ok'
+          })
+        })
+      }else{
+        this.playerForm.markAllAsTouched();
 
+      }
     }
+
   }
 
 

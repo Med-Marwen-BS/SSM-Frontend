@@ -26,15 +26,23 @@
             </div>
             <div class="col-md-6">
                 <label for="inputAddress" class="form-label">Birthdate</label>
-                <input name="birthDate" formControlName="birthDate" [(ngModel)]="player.birthDate" type="date"
-                    [ngClass]="{'is-invalid':playerForm.controls['birthDate'].invalid && playerForm.controls['birthDate'].touched}"
+                <input name="birthdate" formControlName="birthdate" [(ngModel)]="player.birthdate" type="date"
+                    [ngClass]="{'is-invalid':playerForm.controls['birthdate'].invalid && playerForm.controls['birthdate'].touched}"
                     class="form-control" id="inputAddress">
             </div>
+            <label for="inputState" class="form-label">Position</label>
+            <select name="position" formControlName="position" [(ngModel)]="player.position" id="inputState"
+                [ngClass]="{'is-invalid':playerForm.controls['position'].invalid && playerForm.controls['position'].touched}"
+                class="form-select">
+                <option selected>Choose position...</option>
+                <option value="GOALKEEPER">Goalkeeper</option>
+                <option value="PLAYER">Player</option>
+            </select>
             <div class="col-6">
                 <label for="inputAddress2" class="form-label">Phone Number</label>
-                <input name="phoneNumber" formControlName="phoneNumber" [(ngModel)]="player.phoneNumber" type="tel"
+                <input name="phoneNumber" formControlName="phoneNumber" [(ngModel)]="player.phoneNumber" type="text"
                     [ngClass]="{'is-invalid':playerForm.controls['phoneNumber'].invalid && playerForm.controls['phoneNumber'].touched}"
-                    class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+                    class="form-control" id="phoneNumber">
             </div>
             <div class="col-6">
             </div>
@@ -58,7 +66,7 @@
 
                 </div>
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <label for="inputState" class="form-label">Sexe</label>
                 <select name="sexe" formControlName="sexe" [(ngModel)]="player.sexe" id="inputState"
                     [ngClass]="{'is-invalid':playerForm.controls['sexe'].invalid && playerForm.controls['sexe'].touched}"
@@ -67,7 +75,7 @@
                     <option>Homme</option>
                     <option>Femme</option>
                 </select>
-            </div>
+            </div> -->
 
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Save player</button>
