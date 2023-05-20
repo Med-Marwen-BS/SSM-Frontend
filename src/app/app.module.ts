@@ -22,6 +22,9 @@ import { MyTeamComponent } from './components/content/team/my-team/my-team.compo
 import { AddCategoryComponent } from './components/content/category/add-category/add-category.component';
 import { ListCategoriesComponent } from './components/content/category/list-categories/list-categories.component';
 import { AddPlayerComponent } from './components/content/player/add-player/add-player.component';
+import { NewMatchComponent } from './components/content/match/new-match/new-match.component';
+import { LiveMatchComponent } from './components/content/match/live-match/live-match.component';
+import { MatchLandingComponent } from './components/content/match/match-landing/match-landing.component';
 
 
 
@@ -41,7 +44,10 @@ import { AddPlayerComponent } from './components/content/player/add-player/add-p
     MyTeamComponent,
     AddCategoryComponent,
     ListCategoriesComponent,
-    AddPlayerComponent
+    AddPlayerComponent,
+    NewMatchComponent,
+    LiveMatchComponent,
+    MatchLandingComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,37 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Schedule Match</h1>
+    </div>
+    <form [formGroup]="matchForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="globalName">Opponent*</label>
+            <input formControlName="opponent"
+                [ngClass]="{'is-invalid':matchForm.controls['opponent'].invalid && matchForm.controls['opponent'].touched}"
+                [(ngModel)]="match.opponent" style="max-width: 500px;" type="text" class="form-control" name="opponent" id="opponent"
+                placeholder="opponent">
+        </div>
+        <div class="form-group">
+            <label for="globalName">Date*</label>
+            <input formControlName="date"
+                [ngClass]="{'is-invalid':matchForm.controls['date'].invalid && matchForm.controls['date'].touched}"
+                [(ngModel)]="match.date" style="max-width: 500px;" type="date" class="form-control" name="date" id="date"
+                placeholder="date">
+        </div>
+        <div class="form-group">
+            <label for="globalName">Time*</label>
+            <input formControlName="time"
+                [ngClass]="{'is-invalid':matchForm.controls['time'].invalid && matchForm.controls['time'].touched}"
+                [(ngModel)]="match.time" style="max-width: 500px;" type="time" class="form-control" name="time" id="time"
+                placeholder="time">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+
+
+</div>
+
+
+<!-- /.container-fluid -->

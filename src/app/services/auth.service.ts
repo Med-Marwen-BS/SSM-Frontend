@@ -13,13 +13,13 @@ export class AuthService {
 
   
   constructor(private http : HttpClient) { 
-    if(this.isLogged()){
-      this.isTokenExpired().subscribe(data=>{
-        console.log(data);
-        if(data.data == false) console.log("works");
-        else if(data.data == true) this.logout();
-      })
-    }
+    // if(this.isLogged()){
+    //   this.isTokenExpired().subscribe(data=>{
+    //     console.log(data);
+    //     if(data.data == false) console.log("works");
+    //     else if(data.data == true) this.logout();
+    //   })
+    // }
 
    }
 
@@ -58,7 +58,11 @@ export class AuthService {
 
   }
   isLogged():boolean{
-    
+    this.isTokenExpired().subscribe(data=>{
+      console.log(data);
+      if(data.data == false) console.log("works");
+      else if(data.data == true) this.logout();
+    })
     return localStorage.getItem('token')?true:false;
   }
 }
