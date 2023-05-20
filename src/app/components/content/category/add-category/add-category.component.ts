@@ -16,6 +16,7 @@ export class AddCategoryComponent implements OnInit {
   isLoggedIn = true;
   category!:any;
   playerList!:any;
+  calledPlayerList:any=[];
 
   constructor(private playerService:PlayerService,private categoryService:CategoryService,private activatedroute:ActivatedRoute,private config: NgSelectConfig,
     private  authService:AuthService,private router:Router){}
@@ -34,6 +35,23 @@ export class AddCategoryComponent implements OnInit {
       });
     }
   }
+
+  toMatch(){
+    // this.categoryService.calledList = this.calledPlayerList;
+    this.router.navigate(['newMatch',this.category.id])
+  }
+
+  // onCheckboxChange(e:any,playerid:any){
+  //   debugger
+  //   if(e.target.checked){
+  //     let exist =this.calledPlayerList.find((id:any)=> id ==playerid);
+  //     if(exist==null){
+  //       this.calledPlayerList.push(playerid);
+  //     }
+  //   }else{
+  //     this.calledPlayerList = this.calledPlayerList.filter((id:any)=>id!=playerid);
+  //   }
+  // }
 
 
 }

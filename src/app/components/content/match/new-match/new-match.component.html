@@ -1,10 +1,18 @@
 <div class="container-fluid">
+    <form [formGroup]="matchForm" (ngSubmit)="onSubmit()">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Schedule Match</h1>
+        <div class="d-none d-sm-inline-block">
+            <button type="button" [routerLink]="['/live',match.id]" style="margin-right: 2px;"  class=" btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i>Start Match</button>
+            <button type="submit"  class=" btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i>Save</button>
+        </div>
     </div>
-    <form [formGroup]="matchForm" (ngSubmit)="onSubmit()">
+
+
         <div class="form-group">
             <label for="globalName">Opponent*</label>
             <input formControlName="opponent"
@@ -27,8 +35,27 @@
                 placeholder="time">
         </div>
 
-        <button type="submit" class="btn btn-primary">Save</button>
+        <!-- <button type="submit" class="btn btn-primary">Save</button> -->
     </form>
+
+    <div class="row g-2">
+        <div *ngFor="let player of playerList" class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{player.firstName}} {{player.lastName}}</h5>
+                  <p class="card-text">Position : {{ player.position }}</p>
+                  <p class="card-text">Birthdate : {{ player.birthdate }}</p>
+                  <div *ngIf="create" class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="id_{{player.id}}" (change)="onCheckboxChange($event,player.id)">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        call to the game 
+                    </label>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>

@@ -4,9 +4,9 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Handball Section</h1>
-        <div>
-            <a style="margin-right: 2px;" (click)="addMatch()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i>Create New Match</a>
+        <div class="row">
+            <div class="col"><input
+                [(ngModel)]="date"  (change)="search()" class="form-control" type="date" name="date" id="date" required ></div>    
         </div>
     </div>
     <!-- DataTales Example -->
@@ -19,35 +19,29 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Category</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                             <th></th>
                             <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let category of categoriesList | slice: (page-1) * pageSize : page * pageSize">
-                            <th scope="row">{{ category.name }}</th>
-                            <!-- <td>
-                                <img
-                                    [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
-                                    class="me-2"
-                                    style="width: 20px"
-                                />
-                                {{ country.name }}
-                            </td> -->
-                            <td></td>
+                        <tr *ngFor="let match of matchList">
+                            <th scope="row">{{ match.category.name }}:</th>
+
+                            <td>{{ match.team.name }}</td>
+                            <td>VS </td>
+                            <td>{{ match.opponent }}</td>
+                            <td>{{ formatDate(match.time) }}</td>
                             <td>
-                                <a class="edit" [routerLink]="['/addCategory',category.id]" title="Edit" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
+                                <a class="edit" [routerLink]="['/newMatch',match.category.id,match.id]" title="Edit" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
                                 <!-- <a class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-edit"></i></a> -->
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-between p-2">
-                    <ngb-pagination [(page)]="page"
-                    [pageSize]="pageSize"
-                    [collectionSize]="collectionSize"></ngb-pagination>
-                </div>
             </div>
         </div>
     </div>

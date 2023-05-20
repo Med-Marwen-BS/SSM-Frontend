@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class CategoryService {
 
+  calledList:any ;
+
   constructor(private http : HttpClient) { }
 
   getCategories(teamId:any): Observable<any> {
