@@ -1,1 +1,23 @@
-<p>live-match works!</p>
+<div class="container">
+    <div class="scoreboard">
+        <div class="row team-container">
+            <div class="col-4">
+                <h2 *ngIf="team!=null" class="team-name">{{ team.name }}</h2>
+            </div>
+            <div class="col-4">
+                <div class="row" style="padding: 2px;">
+                    <div class="col-4 text-end"><h2 class="score" *ngIf="match!=null">{{ match.myScore }}</h2></div>
+                    <div class="col-4 text-center"><h2 class="score">:</h2></div>
+                    <div class="col-4"><h2 class="score" *ngIf="match!=null">{{ match.opponentScore }}</h2></div>
+                </div>
+            </div>
+            <div class="col-4">
+                <h2 class="team-name text-end" *ngIf="match!=null">{{ match.opponent }}</h2>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="score-button" style="margin: 1px;" (click)="incrementScore('A')">+1</button>
+            <button class="score-button" style="margin: 1px;" (click)="incrementScore('B')">+1</button>
+        </div>
+    </div>
+</div>
