@@ -20,4 +20,65 @@
             <button class="score-button" style="margin: 1px;" (click)="incrementScore('B')">+1</button>
         </div>
     </div>
+        <!-- DataTales Example -->
+        <div style="margin-top: 10px;" class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Statistic by player</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Player name</th>
+                                <th>Shots</th>
+                                <th>Goals</th>
+                                <th>Saves</th>
+                                <th>minutes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let ps of playerStat">
+                                <th scope="row">{{ ps.player.firstName }} {{ ps.player.lastName }}</th>
+                                <td>
+                                    <button class="btn btn-sm btn-danger minus" (click)="decrementShot(ps.player.id)">
+                                        <i class="fas fa-minus"></i>
+                                      </button>
+                                      <button class="btn btn-sm btn-success plus" (click)="incrementShot(ps.player.id)">
+                                        <i class="fas fa-plus"></i>
+                                      </button>
+                                      {{ ps.shots }}
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger minus" (click)="decrementGoals(ps.player.id)">
+                                        <i class="fas fa-minus"></i>
+                                      </button>
+                                      <button class="btn btn-sm btn-success plus" (click)="incrementGoals(ps.player.id)">
+                                        <i class="fas fa-plus"></i>
+                                      </button>
+                                    {{ ps.goals }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger minus" (click)="decrementSaves(ps.player.id)">
+                                        <i class="fas fa-minus"></i>
+                                      </button>
+                                      <button class="btn btn-sm btn-success plus" (click)="incrementSaves(ps.player.id)">
+                                        <i class="fas fa-plus"></i>
+                                      </button>
+                                    {{ ps.saves }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-danger minus" (click)="decrementMinutes(ps.player.id)">
+                                        <i class="fas fa-minus"></i>
+                                      </button>
+                                      <button class="btn btn-sm btn-success plus" (click)="incrementMinutes(ps.player.id)">
+                                        <i class="fas fa-plus"></i>
+                                      </button>
+                                    {{ ps.minutes }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <button type="button" class=" btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i>Update stats</button>
 </div>
