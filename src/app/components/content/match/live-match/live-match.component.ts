@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { MatchService } from 'src/app/services/match.service';
 import { PlayerStatService } from 'src/app/services/player-stat.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-live-match',
@@ -91,11 +92,39 @@ export class LiveMatchComponent implements OnInit {
   }
 
   update(){
-    //TODO : Update
-    // this.playerStat.map((ps:any)=>{
 
-    //   this.playerStatService.
-    // })
+    this.matchService.updateScore(this.match).subscribe((data:any)=>{
+      this.playerStatService.updateMatch(this.playerStat).subscribe(data=>{
+        if(data){
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'stats updated',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+      },(err:any)=>{
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Try Again',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+    },(err:any)=>{
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Try Again',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+
+
+    
   }
 
 

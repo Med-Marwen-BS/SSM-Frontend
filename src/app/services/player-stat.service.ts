@@ -13,4 +13,8 @@ export class PlayerStatService {
   getMatchById(matchId : string):Observable<any>{
     return this.http.get<any>(environment.url_gateway+"team-service/playerStats/get/"+matchId) ;
   }
+
+  updateMatch(ps:any): Observable<any> {
+    return this.http.put<any>(environment.url_gateway+"team-service/playerStats/update",ps);
+  }
 }

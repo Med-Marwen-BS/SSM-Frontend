@@ -21,4 +21,8 @@ export class MatchService {
   getMatchById(id : string):Observable<any>{
     return this.http.get<any>(environment.url_gateway+"team-service/match/get/"+id) ;
   }
+
+  updateScore(match:any): Observable<any> {
+    return this.http.put<any>(environment.url_gateway+"team-service/match/updateScore",match);
+  }
 }
