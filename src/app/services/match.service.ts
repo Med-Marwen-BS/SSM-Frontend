@@ -25,4 +25,10 @@ export class MatchService {
   updateScore(match:any): Observable<any> {
     return this.http.put<any>(environment.url_gateway+"team-service/match/updateScore",match);
   }
+  updateToLive(matchId:any): Observable<any> {
+    return this.http.put<any>(environment.url_gateway+"team-service/match/updateToLive/"+matchId,{});
+  }
+  updateToFinished(matchId:any): Observable<any> {
+    return this.http.put<any>(environment.url_gateway+"team-service/match/updateToFinished/"+matchId,{});
+  }
 }

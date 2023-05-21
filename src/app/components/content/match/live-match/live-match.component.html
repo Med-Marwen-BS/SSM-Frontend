@@ -1,5 +1,30 @@
 <div class="container">
+
+
+    <div *ngIf="isCreator && match.status != 'Finished'" class="scoreboard">
+        <div class="text-center">
+            <button style="margin: 1px;" *ngIf="match.status!= 'NotStarted'" class="btn btn-sm btn-success plus disabled" aria-disabled="true">
+                Start 
+              </button> 
+              <button style="margin: 1px;" *ngIf="match.status== 'NotStarted'" class="btn btn-sm btn-success plus" (click)="confirmStartMatch()" >
+                Start 
+              </button>     
+
+            <button style="margin: 1px;" *ngIf="match.status!= 'Live'" class="btn btn-sm btn-danger minus disabled" aria-disabled="true" >
+                Finish
+              </button>
+              <button style="margin: 1px;" *ngIf="match.status == 'Live'" class="btn btn-sm btn-danger minus" (click)="confirmFineshMatch()" >
+                Finish
+              </button>
+            </div>
+    </div>
+    <!-- *************************** -->
     <div class="scoreboard">
+        <div class="text-center">
+            <h2 *ngIf="team!=null && match.status != 'NotStarted'" class="team-name">{{ match.status }}</h2>
+
+            <h2 *ngIf="team!=null && match.status == 'NotStarted'" class="team-name">{{ match.date | date }} {{ (match.time.length>5)? (match.time  | slice:0:5):(match.time ) }}</h2>
+        </div>
         <div class="row team-container">
             <div class="col-4">
                 <h2 *ngIf="team!=null" class="team-name">{{ team.name }}</h2>
@@ -7,7 +32,8 @@
             <div class="col-4">
                 <div class="row" style="padding: 2px;">
                     <div class="col-4 text-end"><h2 class="score" *ngIf="match!=null">{{ match.myScore }}</h2></div>
-                    <div class="col-4 text-center"><h2 class="score">:</h2></div>
+                    <div class="col-4 text-center" *ngIf="match.status == 'Live'"><h2 class="score image-clignote">:</h2></div>
+                    <div class="col-4 text-center" *ngIf="match.status != 'Live'"><h2 class="score">:</h2></div>
                     <div class="col-4"><h2 class="score" *ngIf="match!=null">{{ match.opponentScore }}</h2></div>
                 </div>
             </div>
@@ -15,7 +41,7 @@
                 <h2 class="team-name text-end" *ngIf="match!=null">{{ match.opponent }}</h2>
             </div>
         </div>
-        <div class="text-center">
+        <div *ngIf="buttonDisplay" class="text-center">
             <button class="score-button" style="margin: 1px;" (click)="incrementScore('A')">+1</button>
             <button class="score-button" style="margin: 1px;" (click)="incrementScore('B')">+1</button>
         </div>
@@ -41,35 +67,35 @@
                             <tr *ngFor="let ps of playerStat">
                                 <th scope="row">{{ ps.player.firstName }} {{ ps.player.lastName }}</th>
                                 <td>
-                                    <button class="btn btn-sm btn-danger minus" (click)="decrementShot(ps.player.id)">
+                                    <button *ngIf="buttonDisplay" class="btn btn-sm btn-danger minus" (click)="decrementShot(ps.player.id)">
                                         <i class="fas fa-minus"></i>
                                       </button>
-                                      <button class="btn btn-sm btn-success plus" (click)="incrementShot(ps.player.id)">
+                                      <button *ngIf="buttonDisplay" class="btn btn-sm btn-success plus" (click)="incrementShot(ps.player.id)">
                                         <i class="fas fa-plus"></i>
                                       </button>
                                       {{ ps.shots }}
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-danger minus" (click)="decrementGoals(ps.player.id)">
+                                    <button *ngIf="buttonDisplay" class="btn btn-sm btn-danger minus" (click)="decrementGoals(ps.player.id)">
                                         <i class="fas fa-minus"></i>
                                       </button>
-                                      <button class="btn btn-sm btn-success plus" (click)="incrementGoals(ps.player.id)">
+                                      <button *ngIf="buttonDisplay" class="btn btn-sm btn-success plus" (click)="incrementGoals(ps.player.id)">
                                         <i class="fas fa-plus"></i>
                                       </button>
                                     {{ ps.goals }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-danger minus" (click)="decrementSaves(ps.player.id)">
+                                    <button *ngIf="buttonDisplay" class="btn btn-sm btn-danger minus" (click)="decrementSaves(ps.player.id)">
                                         <i class="fas fa-minus"></i>
                                       </button>
-                                      <button class="btn btn-sm btn-success plus" (click)="incrementSaves(ps.player.id)">
+                                      <button *ngIf="buttonDisplay" class="btn btn-sm btn-success plus" (click)="incrementSaves(ps.player.id)">
                                         <i class="fas fa-plus"></i>
                                       </button>
                                     {{ ps.saves }}</td>
                                 <td>
-                                    <button class="btn btn-sm btn-danger minus" (click)="decrementMinutes(ps.player.id)">
+                                    <button *ngIf="buttonDisplay" class="btn btn-sm btn-danger minus" (click)="decrementMinutes(ps.player.id)">
                                         <i class="fas fa-minus"></i>
                                       </button>
-                                      <button class="btn btn-sm btn-success plus" (click)="incrementMinutes(ps.player.id)">
+                                      <button *ngIf="buttonDisplay" class="btn btn-sm btn-success plus" (click)="incrementMinutes(ps.player.id)">
                                         <i class="fas fa-plus"></i>
                                       </button>
                                     {{ ps.minutes }}</td>
@@ -79,6 +105,6 @@
                 </div>
             </div>
         </div>
-        <button (click)="update()" type="button" class=" btn btn-sm btn-primary shadow-sm"><i
+        <button *ngIf="buttonDisplay" (click)="update()" type="button" class=" btn btn-sm btn-primary shadow-sm"><i
             class="fas fa-download fa-sm text-white-50"></i>Update stats</button>
 </div>
