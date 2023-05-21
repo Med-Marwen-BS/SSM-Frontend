@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { PlayerStatService } from 'src/app/services/player-stat.service';
 import { PlayerService } from 'src/app/services/player.service';
 import Swal from 'sweetalert2';
 
@@ -17,6 +18,13 @@ export class AddPlayerComponent {
   isLoggedIn = true;
   categotyId!:any
   playerId!:any
+  playerStats:any[]=[];
+  update=false
+
+  collectionSize:any = 0
+  page:any = 1
+  pageSize:any = 5
+  teams!: any[];
 
   player:any={
     firstName:"",
@@ -44,7 +52,7 @@ export class AddPlayerComponent {
     
   })
 
-  constructor(private playerService:PlayerService,private categoryService:CategoryService,private authService:AuthService,private router:Router,private activatedroute:ActivatedRoute){}
+  constructor(private playerStatService:PlayerStatService,private playerService:PlayerService,private categoryService:CategoryService,private authService:AuthService,private router:Router,private activatedroute:ActivatedRoute){}
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
     //if(this.isLoggedIn) this.router.navigate(['/listTeam'])
@@ -56,7 +64,12 @@ export class AddPlayerComponent {
         
         if(this.playerId!=null){
           this.playerService.getPlayerById(this.playerId).subscribe(data=>{
-            this.player=data
+            this.player=data 
+          })
+          this.playerStatService.getByPlayerId(this.playerId).subscribe(data=>{
+            this.playerStats = data;
+            this.collectionSize=data.length
+            this.update=true
             
           })
         }
