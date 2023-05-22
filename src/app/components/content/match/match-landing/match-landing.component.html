@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Handball Section</h1>
+        <h1 class="h3 mb-0 text-gray-800">Matches :</h1>
         <div class="row">
             <div class="col"><input
                 [(ngModel)]="date"  (change)="search()" class="form-control" type="date" name="date" id="date" required ></div>    
@@ -12,11 +12,11 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Matchs</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Matches</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table  *ngIf="matchList.length!=0" class="table table-striped">
                     <thead>
                         <tr>
                             <th>Category</th>
@@ -28,20 +28,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
+
                         <tr *ngFor="let match of matchList">
+
                             <th scope="row">{{ match.category.name }}:</th>
 
                             <td>{{ match.team.name }}</td>
                             <td>VS </td>
                             <td>{{ match.opponent }}</td>
-                            <td>{{ formatDate(match.time) }}</td>
+                            <td *ngIf="match.status=='NotStarted'">start at {{ formatDate(match.time) }}</td>
+                            <td *ngIf="match.status=='Finished'">final score {{ match.myScore }}:{{match.opponentScore}}</td>
+                            <td *ngIf="match.status=='Live'">live score {{ match.myScore }}:{{match.opponentScore}} </td>
                             <td>
                                 <a class="edit" [routerLink]="['/newMatch',match.category.id,match.id]" title="Edit" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
-                                <!-- <a class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-edit"></i></a> -->
+                                <a class="delete" [routerLink]="['/live',match.id]" title="view" data-toggle="tooltip"><i class="fa-solid fa-eye"></i></a>
                             </td>
                         </tr>
                     </tbody>
+                    
+
                 </table>
+                <h5 *ngIf="matchList.length==0" class="text-center">There are no matches today.</h5>
             </div>
         </div>
     </div>

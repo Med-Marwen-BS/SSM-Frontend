@@ -2,7 +2,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Create Player</h1>
+        <h1 class="h3 mb-0 text-gray-800">Fiche Player</h1>
     </div>
     <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
         <div class="row g-3">
@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <label for="inputZip" class="form-label">Width</label>
+                <label for="inputZip" class="form-label">Weidth</label>
                 <div class="input-group mb-3">
                     <input name="width" formControlName="width" [(ngModel)]="player.width" type="number"
                         [ngClass]="{'is-invalid':playerForm.controls['width'].invalid && playerForm.controls['width'].touched}"
@@ -86,7 +86,7 @@
 
     <div *ngIf="update" style="margin-top: 10px;" class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Statistic by player</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Player statistic</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">

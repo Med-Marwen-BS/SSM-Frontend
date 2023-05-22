@@ -49,12 +49,13 @@ export class LiveMatchComponent implements OnInit {
 
   }
 
-  incrementScore(teamCode:any){
-    if(teamCode=='A'){
-      this.match.myScore +=1
-    }
-    if(teamCode=='B'){
+  incrementScore(code:any){
+
+    if(code=='+'){
       this.match.opponentScore +=1
+    }
+    if(code=='-' && this.match.opponentScore !=0){
+      this.match.opponentScore -=1
     }
   }
 
@@ -71,11 +72,15 @@ export class LiveMatchComponent implements OnInit {
   incrementGoals(playerId:any){
     let p = this.playerStat.find((p:any)=>playerId==p.player.id)
     p.goals = p.goals+1
+    this.match.myScore +=1
   }
   decrementGoals(playerId:any){
     let p = this.playerStat.find((p:any)=>playerId==p.player.id)
-    if(p.goals!=0)
+    if(p.goals!=0){
       p.goals = p.goals-1
+      this.match.myScore -=1
+    }
+      
   }
 
   incrementSaves(playerId:any){
