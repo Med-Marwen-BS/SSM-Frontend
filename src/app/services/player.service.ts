@@ -22,4 +22,7 @@ export class PlayerService {
   getPlayerById(id : string):Observable<any>{
     return this.http.get<any>(environment.url_gateway+"team-service/player/get/"+id) ;
   }
+  deletePlayerById(id : string):Observable<any>{
+    return this.http.delete<any>(environment.url_gateway+"team-service/player/delete/"+id) ;
+  }
 }

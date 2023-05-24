@@ -24,4 +24,8 @@ export class CategoryService {
   getCategoryById(id : string):Observable<any>{
     return this.http.get<any>(environment.url_gateway+"team-service/category/get/"+id) ;
   }
+
+  deleteCategoryById(id : string):Observable<any>{
+    return this.http.delete<any>(environment.url_gateway+"team-service/category/delete/"+id) ;
+  }
 }

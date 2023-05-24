@@ -21,5 +21,8 @@ export class TeamService {
   getTeamById(id : string):Observable<any>{
     return this.http.get<any>(environment.url_gateway+"team-service/team/get/"+id) ;
   }
+  deleteTeamById(id : string):Observable<any>{
+    return this.http.delete<any>(environment.url_gateway+"team-service/team/delete/"+id) ;
+  }
 
 }
