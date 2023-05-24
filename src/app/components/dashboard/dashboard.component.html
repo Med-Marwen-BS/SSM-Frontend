@@ -23,6 +23,8 @@
                         </p>
                         <p class="card-text" *ngIf="player.goals!=null">Birthdate : {{ player.goals.player.birthdate }}
                         </p>
+                        <p class="card-text" *ngIf="player.goals!=null">Total Goals : {{ player.goals.goals }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -45,13 +47,15 @@
                         </p>
                         <p class="card-text" *ngIf="player.shots!=null">Birthdate : {{ player.shots.player.birthdate }}
                         </p>
+                        <p class="card-text" *ngIf="player.shots!=null">Total Shots : {{ player.shots.shots }}
+                        </p>
                     </div>
                 </div>
             </div>
 
             <!-- Minutes -->
             <div class="col-4">
-                <h5 class="card-title" style="margin-bottom: 10px;margin-top: 10px;" *ngIf="player.goals!=null">Most Minutes </h5>
+                <h5 class="card-title" style="margin-bottom: 10px;margin-top: 10px;" *ngIf="player.goals!=null">Most Minutes played</h5>
                 <div class="card" style="width: 18rem;">
                     <div *ngIf="player.minutes!=null">
                         <img [routerLink]="['/addPlayer',player.minutes.player.category.id,player.minutes.player.id]"
@@ -65,6 +69,8 @@
                         <p class="card-text" *ngIf="player.minutes!=null">Position : {{ player.minutes.player.position }}
                         </p>
                         <p class="card-text" *ngIf="player.minutes!=null">Birthdate : {{ player.minutes.player.birthdate }}
+                        </p>
+                        <p class="card-text" *ngIf="player.minutes!=null">Total Minutes Played : {{ player.minutes.minutes }}
                         </p>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   constructor(private authService:AuthService,private router:Router){}
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
-    if(this.isLoggedIn) this.router.navigate(['/listTeam'])
+    if(this.isLoggedIn) this.router.navigate(['/dashboard'])
    
   }
 
