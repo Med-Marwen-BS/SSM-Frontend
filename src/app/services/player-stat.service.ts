@@ -21,4 +21,8 @@ export class PlayerStatService {
   updateMatch(ps:any): Observable<any> {
     return this.http.put<any>(environment.url_gateway+"team-service/playerStats/update",ps);
   }
+
+  getStats(teamId : string):Observable<any>{
+    return this.http.get<any>(environment.url_gateway+"team-service/playerStats/getStats/"+teamId) ;
+  }
 }

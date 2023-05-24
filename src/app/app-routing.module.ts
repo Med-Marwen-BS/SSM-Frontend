@@ -11,6 +11,7 @@ import { AddPlayerComponent } from './components/content/player/add-player/add-p
 import { MatchLandingComponent } from './components/content/match/match-landing/match-landing.component';
 import { NewMatchComponent } from './components/content/match/new-match/new-match.component';
 import { LiveMatchComponent } from './components/content/match/live-match/live-match.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'newMatch/:categoryId', component:NewMatchComponent },
   { path: 'newMatch/:categoryId/:matchId', component:NewMatchComponent },
   { path: 'live/:id', component:LiveMatchComponent },
+  { path: 'dashboard', component:DashboardComponent },
   // { path: '**', component: PageNotFoundComponent },
 ];
 

@@ -25,6 +25,7 @@ import { AddPlayerComponent } from './components/content/player/add-player/add-p
 import { NewMatchComponent } from './components/content/match/new-match/new-match.component';
 import { LiveMatchComponent } from './components/content/match/live-match/live-match.component';
 import { MatchLandingComponent } from './components/content/match/match-landing/match-landing.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 
@@ -47,7 +48,8 @@ import { MatchLandingComponent } from './components/content/match/match-landing/
     AddPlayerComponent,
     NewMatchComponent,
     LiveMatchComponent,
-    MatchLandingComponent
+    MatchLandingComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

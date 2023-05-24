@@ -1,0 +1,81 @@
+<div class="container-fluid">
+
+    <div *ngFor="let player of playerList">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 style="margin-top: 20px;" class="h3 mb-0 text-gray-800">Category : {{player.categoryName}}</h1>
+        </div>
+        <div class="row g-2">
+            <div class="col-4">
+                <h5 class="card-title" style="margin-bottom: 10px;margin-top: 10px;" *ngIf="player.goals!=null">Top
+                    Scorer</h5>
+                <div class="card" style="width: 18rem;">
+                    <div *ngIf="player.goals!=null">
+                        <img [routerLink]="['/addPlayer',player.goals.player.category.id,player.goals.player.id]"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU"
+                            class="card-img-top" alt="...">
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title" *ngIf="player.goals!=null">{{player.goals.player.firstName}}
+                            {{player.goals.player.lastName}}</h5>
+                        <p class="card-text" *ngIf="player.goals!=null">Position : {{ player.goals.player.position }}
+                        </p>
+                        <p class="card-text" *ngIf="player.goals!=null">Birthdate : {{ player.goals.player.birthdate }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shots -->
+            <div class="col-4">
+                <h5 class="card-title" style="margin-bottom: 10px;margin-top: 10px;" *ngIf="player.goals!=null">Top
+                    Shots</h5>
+                <div class="card" style="width: 18rem;">
+                    <div *ngIf="player.shots!=null">
+                        <img [routerLink]="['/addPlayer',player.shots.player.category.id,player.shots.player.id]"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU"
+                            class="card-img-top" alt="...">
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title" *ngIf="player.shots!=null">{{player.shots.player.firstName}}
+                            {{player.shots.player.lastName}}</h5>
+                        <p class="card-text" *ngIf="player.shots!=null">Position : {{ player.shots.player.position }}
+                        </p>
+                        <p class="card-text" *ngIf="player.shots!=null">Birthdate : {{ player.shots.player.birthdate }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Minutes -->
+            <div class="col-4">
+                <h5 class="card-title" style="margin-bottom: 10px;margin-top: 10px;" *ngIf="player.goals!=null">Most Minutes </h5>
+                <div class="card" style="width: 18rem;">
+                    <div *ngIf="player.minutes!=null">
+                        <img [routerLink]="['/addPlayer',player.minutes.player.category.id,player.minutes.player.id]"
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU"
+                            class="card-img-top" alt="...">
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title" *ngIf="player.minutes!=null">{{player.minutes.player.firstName}}
+                            {{player.minutes.player.lastName}}</h5>
+                        <p class="card-text" *ngIf="player.minutes!=null">Position : {{ player.minutes.player.position }}
+                        </p>
+                        <p class="card-text" *ngIf="player.minutes!=null">Birthdate : {{ player.minutes.player.birthdate }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- if null -->
+            <h5 *ngIf="playerList.length==0" class="text-center">There are no players yet for this category.</h5>
+
+        </div>
+    </div>
+
+</div>
+
+
+<!-- /.container-fluid -->
