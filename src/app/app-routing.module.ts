@@ -12,6 +12,8 @@ import { MatchLandingComponent } from './components/content/match/match-landing/
 import { NewMatchComponent } from './components/content/match/new-match/new-match.component';
 import { LiveMatchComponent } from './components/content/match/live-match/live-match.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ListUserComponent } from './components/content/users/list-user/list-user.component';
+import { ListUsersTeamComponent } from './components/content/users/list-users-team/list-users-team.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -33,6 +35,8 @@ const routes: Routes = [
   { path: 'newMatch/:categoryId/:matchId', component:NewMatchComponent },
   { path: 'live/:id', component:LiveMatchComponent },
   { path: 'dashboard', component:DashboardComponent },
+  { path: 'listUser', component:ListUserComponent },
+  { path: 'listUsersTeam', component:ListUsersTeamComponent },
   // { path: '**', component: PageNotFoundComponent },
 ];
 

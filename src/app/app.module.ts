@@ -26,6 +26,8 @@ import { NewMatchComponent } from './components/content/match/new-match/new-matc
 import { LiveMatchComponent } from './components/content/match/live-match/live-match.component';
 import { MatchLandingComponent } from './components/content/match/match-landing/match-landing.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ListUserComponent } from './components/content/users/list-user/list-user.component';
+import { ListUsersTeamComponent } from './components/content/users/list-users-team/list-users-team.component';
 
 
 
@@ -49,7 +51,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     NewMatchComponent,
     LiveMatchComponent,
     MatchLandingComponent,
-    DashboardComponent
+    DashboardComponent,
+    ListUserComponent,
+    ListUsersTeamComponent
   ],
   imports: [
     BrowserModule,
