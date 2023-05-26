@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -36,6 +36,22 @@ export class AuthService {
   getUserByUsername(username:any): Observable<any> {
     return this.http.get<any>(environment.url_gateway+"user-service/getByUsername/"+username);
   }
+
+  changeRole(username:any,role:any): Observable<any> {
+    let params = new HttpParams()
+    .set('username', username)
+    .set('role', role);
+
+    return this.http.post<any>(environment.url_gateway+"user-service/changeRole",{},{params: params});
+  }
+
+  getAllUsers(): Observable<any> {
+    return this.http.get<any>(environment.url_gateway+"user-service/getAllUsers");
+  }
+  getUsersByTeamId(teamId:any): Observable<any> {
+    return this.http.get<any>(environment.url_gateway+"user-service/getUsersByTeam/"+teamId);
+  }
+
   getUserByToken(): Observable<any> {
     return this.http.get<any>(environment.url_gateway+"user-service/getByToken");
   }

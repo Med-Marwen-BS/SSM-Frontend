@@ -1,1 +1,62 @@
-<p>list-user works!</p>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Teams</h1>
+        <div>
+            
+        </div>
+    </div>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Teams List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Team</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let team of users | slice: (page-1) * pageSize : page * pageSize">
+                            <th scope="row">{{ team.username }}</th>
+                            <td>{{ team.firstName }}</td>
+                            <td>{{ team.lastName}}</td>
+                            <td>{{ team.email }}</td>
+                            <td>
+                                <select (change)="newRole(team)" [(ngModel)]="team.role" class="form-select" aria-label="Default select example">
+                                    <option value="ADMIN">Admin</option>
+                                    <option value="USER">User</option>
+                                  </select>
+                            </td>
+                            <td>{{ team.team.name }}</td>
+                            <td>
+                                <a class="edit" [routerLink]="['/addTeam',team.id]" title="Edit" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
+                                <!-- <a class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-edit"></i></a> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [(page)]="page"
+                    [pageSize]="pageSize"
+                    [collectionSize]="collectionSize"></ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- /.container-fluid -->
