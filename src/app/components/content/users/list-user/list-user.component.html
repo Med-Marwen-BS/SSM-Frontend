@@ -24,7 +24,7 @@
                             <th>Email</th>
                             <th>Role</th>
                             <th>Team</th>
-                            <th>#</th>
+                            <th>Actif</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,7 +41,7 @@
                             </td>
                             <td>{{ team.team.name }}</td>
                             <td>
-                                <a class="edit" [routerLink]="['/addTeam',team.id]" title="Edit" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
+                                <input (change)="actif_blockUser(team)" class="text-end" [(ngModel)]="team.enabled" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
                                 <!-- <a class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-edit"></i></a> -->
                             </td>
                         </tr>

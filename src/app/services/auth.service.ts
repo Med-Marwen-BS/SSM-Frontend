@@ -33,6 +33,14 @@ export class AuthService {
   addTeamToUser(teamId:string,email:string): Observable<any> {
     return this.http.post<any>(environment.url_gateway+"user-service/addTeamToUser",{teamId:teamId,email:email});
   }
+
+  unblockUser(userId:any): Observable<any> {
+    return this.http.put<any>(environment.url_gateway+"user-service/unblock/"+userId,{});
+  }
+  blockUser(userId:any): Observable<any> {
+    return this.http.put<any>(environment.url_gateway+"user-service/block/"+userId,{});
+  }
+
   getUserByUsername(username:any): Observable<any> {
     return this.http.get<any>(environment.url_gateway+"user-service/getByUsername/"+username);
   }

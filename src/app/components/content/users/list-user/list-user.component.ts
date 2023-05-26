@@ -72,5 +72,81 @@ export class ListUserComponent implements OnInit{
       }
     })
 	}
+  actif_blockUser(user:any){
+    let msg1 = ""
+    let msg2= ""
+    if(user.enabled){
+      msg1="Confirm changing Status!"
+      msg2="activate user : "+user.username
+    }
+    else{
+      msg1="Confirm changing Status!"
+      msg2="block user : "+user.username
+    }
+
+    Swal.fire({
+      title: msg1,
+      text: msg2,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if(user.enabled){
+          this.authService.unblockUser(user.id).subscribe(data=>{
+            Swal.fire(
+              'Success!',
+              '!',
+              'success'
+            )
+          },()=>{
+            if(user.enabled)
+            {
+              user.enabled = false
+            }else{
+              user.enabled = true
+            }
+            Swal.fire(
+              'Error On status changing!',
+              '!',
+              'error'
+            )
+          })
+        }
+        else{
+          this.authService.blockUser(user.id).subscribe(data=>{
+            Swal.fire(
+              'Success!',
+              '!',
+              'success'
+            )
+          },()=>{
+            if(user.enabled)
+            {
+              user.enabled = false
+            }else{
+              user.enabled = true
+            }
+            Swal.fire(
+              'Error On status changing!',
+              '!',
+              'error'
+            )
+          })
+        }
+        
+      }else{
+        if(user.enabled)
+        {
+          user.enabled = false
+        }else{
+          user.enabled = true
+        }
+        
+      }
+    })
+  }
 
 }
