@@ -5,9 +5,9 @@
         <h1 class="h3 mb-0 text-gray-800">{{category.name}}</h1>
         <div>
             <div class="col">
-                <a style="margin-right: 2px;" [routerLink]="['/addPlayer',category.id]" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Create Player</a>
-                <a style="margin-right: 2px;" (click)="toMatch()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                <a *ngIf="adminCategory||adminTeam" style="margin-right: 2px;" [routerLink]="['/addPlayer',category.id]" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50" ></i> Create Player</a>
+                <a *ngIf="adminCategory||adminTeam" style="margin-right: 2px;" (click)="toMatch()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                     class="fas fa-download fa-sm text-white-50"></i> Create Match</a>
             </div>
         </div>
@@ -15,7 +15,9 @@
     <div class="row g-2">
         <div *ngFor="let player of playerList" class="col-4">
             <div class="card" style="width: 18rem;">
-                <img [routerLink]="['/addPlayer',category.id,player.id]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU" class="card-img-top" alt="...">
+                <img *ngIf="adminCategory || adminTeam" [routerLink]="['/addPlayer',category.id,player.id]" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU" class="card-img-top" alt="...">
+                <img *ngIf="!adminCategory && !adminTeam"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU" class="card-img-top" alt="...">
+
                 <div class="card-body">
                   <h5 class="card-title">{{player.firstName}} {{player.lastName}}</h5>
                   <p class="card-text">Position : {{ player.position }}</p>

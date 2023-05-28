@@ -16,11 +16,23 @@ export class ListUserComponent implements OnInit{
   pageSize:any = 5
   users!: any[];
   isLoggedIn = true;
+  user:any
 
   constructor(private teamService : TeamService ,private  authService:AuthService,private router:Router){}
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
     if(!this.isLoggedIn) this.router.navigate(['/login'])
+
+    this.authService.getUserByToken().subscribe(data=>{
+      this.user=data.data
+      this.user.password="";
+      if(this.user.role!='SUPER_ADMIN'&&this.user.role!='ADMIN'){
+      
+        this.router.navigate(['/login'])
+      }
+      
+    })
+
 
     this.authService.getAllUsers().subscribe(userList=>{
       console.log(userList);

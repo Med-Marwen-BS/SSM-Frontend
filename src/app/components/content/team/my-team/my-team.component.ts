@@ -20,6 +20,7 @@ export class MyTeamComponent implements OnInit {
     country: "",
     creator: {}
   };
+  adminTeam=false
   selectedCountry!: string;
   public countries: any = countries.map(c => c.name);
   isLoggedIn = true;
@@ -41,8 +42,8 @@ export class MyTeamComponent implements OnInit {
     this.authService.getUserByToken().subscribe(data => {
       this.user = data.data;
       this.team = data.data.team
+      if(this.user.id==this.team.creatorId) this.adminTeam=true
 
-      console.log(data);
     });
 
 

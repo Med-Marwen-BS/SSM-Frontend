@@ -16,7 +16,6 @@ import { ListUserComponent } from './components/content/users/list-user/list-use
 import { ListUsersTeamComponent } from './components/content/users/list-users-team/list-users-team.component';
 import { MyProfileComponent } from './components/content/users/my-profile/my-profile.component';
 import { DetailUserComponent } from './components/content/users/detail-user/detail-user.component';
-import { MyCategoryComponent } from './components/content/users/my-category/my-category.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -41,8 +40,7 @@ const routes: Routes = [
   { path: 'listUser', component:ListUserComponent },
   { path: 'listUsersTeam', component:ListUsersTeamComponent },
   { path: 'myProfile', component:MyProfileComponent },
-  { path: 'detailUser/:id', component:DetailUserComponent },
-  { path: 'myCategory', component:MyCategoryComponent },
+  { path: 'detailUser/:username', component:DetailUserComponent },
   // { path: '**', component: PageNotFoundComponent },
 ];
 

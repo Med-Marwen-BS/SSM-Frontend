@@ -17,6 +17,10 @@ export class AddCategoryComponent implements OnInit {
   category!:any;
   playerList!:any;
   calledPlayerList:any=[];
+  user!:any
+  team!:any
+  adminTeam=false
+  adminCategory=false
 
   constructor(private playerService:PlayerService,private categoryService:CategoryService,private activatedroute:ActivatedRoute,private config: NgSelectConfig,
     private  authService:AuthService,private router:Router){}
@@ -25,6 +29,18 @@ export class AddCategoryComponent implements OnInit {
   
     if(!this.isLoggedIn) this.router.navigate(['/login'])
     this.id=this.activatedroute.snapshot.params['id'];
+    
+
+    this.authService.getUserByToken().subscribe(data => {
+      this.user = data.data;
+      this.team = data.data.team
+      this.adminTeam = this.team.creatorId == this.user.id
+      
+      this.adminCategory = this.user.adminCategory && (this.user.categoryId==this.id)
+    });
+
+
+   
     if(this.id!=null){
       this.categoryService.getCategoryById(this.id).subscribe(data=>{
         this.category = data;

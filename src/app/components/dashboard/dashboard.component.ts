@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit{
   calledPlayerList:any=[];
   user:any
   team:any
+  
 
   constructor(private playerService:PlayerStatService,private categoryService:CategoryService,private activatedroute:ActivatedRoute,private config: NgSelectConfig,
     private  authService:AuthService,private router:Router){}

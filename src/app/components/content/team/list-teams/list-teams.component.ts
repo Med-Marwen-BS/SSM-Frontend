@@ -15,11 +15,24 @@ export class ListTeamsComponent implements OnInit{
   pageSize:any = 5
   teams!: any[];
   isLoggedIn = true;
+  user:any
+  team:any
+  adminTeam=false
 
   constructor(private teamService : TeamService ,private  authService:AuthService,private router:Router){}
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
     if(!this.isLoggedIn) this.router.navigate(['/login'])
+
+    this.authService.getUserByToken().subscribe(data => {
+      this.user = data.data;
+      this.team = data.data.team
+      this.adminTeam = this.team.creatorId == this.user.id
+      if(this.user.role!='SUPER_ADMIN'&&this.user.role!='ADMIN'){
+      
+        this.router.navigate(['/login'])
+      }
+    });
 
     this.teamService.getTeams().subscribe(teamsList=>{
       console.log(teamsList);

@@ -33,7 +33,9 @@ export class NewMatchComponent implements OnInit {
 
   isLoggedIn = true;
   calledPlayerList:any=[];
-
+  team!:any
+  adminTeam=false
+  adminCategory=false
 
   matchForm = new FormGroup({
     opponent : new FormControl('',[Validators.required]),
@@ -57,6 +59,20 @@ export class NewMatchComponent implements OnInit {
     
 
     this.categoryId=this.activatedroute.snapshot.params['categoryId'];
+
+    
+    this.authService.getUserByToken().subscribe(data => {
+      this.user = data.data;
+      this.team = data.data.team
+      this.adminTeam = this.team.creatorId == this.user.id
+      
+      this.adminCategory = this.user.adminCategory && (this.user.categoryId==this.categoryId)
+      if(!this.adminCategory&&!this.adminTeam){
+        this.router.navigate(['login'])
+      }
+    });
+
+
     this.matchId=this.activatedroute.snapshot.params['matchId'];
     if(this.matchId==null){
       if(this.categoryId!=null){

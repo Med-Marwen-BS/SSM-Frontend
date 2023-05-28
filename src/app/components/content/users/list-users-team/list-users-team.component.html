@@ -36,7 +36,7 @@
                             <td>{{ user.email }}</td>
                             <td>{{ user.team.name }}</td>
                             <td>
-                                <a style="margin-right: 10px;" class="edit" [routerLink]="['/detailUser',user.id]" title="Edit role" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
+                                <a style="margin-right: 10px;" class="edit" [routerLink]="['/detailUser',user.username]" title="Edit role" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
                                 <a (click)="deleteUser(user)" class="delete" title="Delete user from team" data-toggle="tooltip"><i class="fas fa-sharp fa-solid fa-trash" style="color: #de1717;"></i></a>
                             </td>
                         </tr>

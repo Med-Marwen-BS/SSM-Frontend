@@ -39,6 +39,11 @@ export class AddPlayerComponent implements OnInit {
     category:null
   };
 
+  user!:any
+  team!:any
+  adminTeam=false
+  adminCategory=false
+
   playerForm = new FormGroup({
     firstName : new FormControl('',[Validators.required]),
     lastName : new FormControl('',Validators.required),
@@ -55,6 +60,21 @@ export class AddPlayerComponent implements OnInit {
   constructor(private playerStatService:PlayerStatService,private playerService:PlayerService,private categoryService:CategoryService,private authService:AuthService,private router:Router,private activatedroute:ActivatedRoute){}
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
+
+    this.categotyId=this.activatedroute.snapshot.params['categotyId'];
+
+
+
+    this.authService.getUserByToken().subscribe(data => {
+      this.user = data.data;
+      this.team = data.data.team
+      this.adminTeam = this.team.creatorId == this.user.id
+      
+      this.adminCategory = this.user.adminCategory && (this.user.categoryId==this.categotyId)
+      if(!this.adminCategory&&!this.adminTeam){
+        this.router.navigate(['login'])
+      }
+    });
     //if(this.isLoggedIn) this.router.navigate(['/listTeam'])
     this.categotyId=this.activatedroute.snapshot.params['categotyId'];
     this.playerId=this.activatedroute.snapshot.params['playerId'];

@@ -41,8 +41,9 @@
                             <td *ngIf="match.status=='Finished'">final score {{ match.myScore }}:{{match.opponentScore}}</td>
                             <td *ngIf="match.status=='Live'">live score {{ match.myScore }}:{{match.opponentScore}} </td>
                             <td>
-                                <a style="margin-right: 10px;" class="edit" [routerLink]="['/newMatch',match.category.id,match.id]" title="Edit" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
-                                <a class="delete" [routerLink]="['/live',match.id]"  title="Edit" data-toggle="tooltip"><i class="fas fa-eye" style="color: #149050;"></i></a>
+                                <a class="delete" [routerLink]="['/live',match.id]" style="margin-right: 10px;"  title="Edit" data-toggle="tooltip"><i class="fas fa-eye" style="color: #149050;"></i></a>
+                                <a *ngIf="editButtonRole(match.category.id)" class="edit" [routerLink]="['/newMatch',match.category.id,match.id]" title="Edit" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
+
                             </td>
                         </tr>
                     </tbody>

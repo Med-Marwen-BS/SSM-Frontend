@@ -30,7 +30,6 @@ import { ListUserComponent } from './components/content/users/list-user/list-use
 import { ListUsersTeamComponent } from './components/content/users/list-users-team/list-users-team.component';
 import { DetailUserComponent } from './components/content/users/detail-user/detail-user.component';
 import { MyProfileComponent } from './components/content/users/my-profile/my-profile.component';
-import { MyCategoryComponent } from './components/content/users/my-category/my-category.component';
 
 
 
@@ -58,8 +57,7 @@ import { MyCategoryComponent } from './components/content/users/my-category/my-c
     ListUserComponent,
     ListUsersTeamComponent,
     DetailUserComponent,
-    MyProfileComponent,
-    MyCategoryComponent
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -28,6 +28,8 @@ export class MatchLandingComponent implements OnInit {
   finalMonth:any;
   finalDay:any;
 
+  adminTeam=false
+  adminCategory=false
 
   date = "1995-05-07"
 
@@ -41,6 +43,8 @@ export class MatchLandingComponent implements OnInit {
       this.team = data.data.team
       this.search();
 
+      this.adminTeam = this.team.creatorId == this.user.id
+      
       // this.categoryService.getCategories(this.team.id).subscribe(categoriesList => {
       //   console.log(categoriesList);
   
@@ -53,6 +57,10 @@ export class MatchLandingComponent implements OnInit {
     
 
 
+  }
+
+  editButtonRole(categoryId:string){
+    return this.adminTeam || (this.user.adminCategory && (this.user.categoryId==categoryId))
   }
 
 

@@ -11,7 +11,7 @@
                     Scorer</h5>
                 <div class="card" style="width: 18rem;">
                     <div *ngIf="player.goals!=null">
-                        <img [routerLink]="['/addPlayer',player.goals.player.category.id,player.goals.player.id]"
+                        <img 
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU"
                             class="card-img-top" alt="...">
                     </div>
@@ -35,7 +35,7 @@
                     Shots</h5>
                 <div class="card" style="width: 18rem;">
                     <div *ngIf="player.shots!=null">
-                        <img [routerLink]="['/addPlayer',player.shots.player.category.id,player.shots.player.id]"
+                        <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU"
                             class="card-img-top" alt="...">
                     </div>
@@ -58,7 +58,7 @@
                 <h5 class="card-title" style="margin-bottom: 10px;margin-top: 10px;" *ngIf="player.goals!=null">Most Minutes played</h5>
                 <div class="card" style="width: 18rem;">
                     <div *ngIf="player.minutes!=null">
-                        <img [routerLink]="['/addPlayer',player.minutes.player.category.id,player.minutes.player.id]"
+                        <img 
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJLw7nV2Z5ObVV2lwQO4BwvjChEPVuTNxIvg&usqp=CAU"
                             class="card-img-top" alt="...">
                     </div>

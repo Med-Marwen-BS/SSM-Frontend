@@ -19,6 +19,7 @@ export class ListCategoriesComponent implements OnInit {
   isLoggedIn = true;
   user!:any
   team!:any
+  adminTeam=false
 
   constructor(private categoryService: CategoryService, private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
@@ -28,6 +29,7 @@ export class ListCategoriesComponent implements OnInit {
     this.authService.getUserByToken().subscribe(data => {
       this.user = data.data;
       this.team = data.data.team
+      this.adminTeam = this.team.creatorId == this.user.id
 
       this.categoryService.getCategories(this.team.id).subscribe(categoriesList => {
         console.log(categoriesList);

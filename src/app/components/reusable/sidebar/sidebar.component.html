@@ -23,17 +23,17 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span class="pointer">My Profile</span></a>
     </li>
-    <li class="nav-item " [routerLink]="['/listUser']" routerLinkActive="active">
+    <li *ngIf="admin" class="nav-item " class="nav-item " [routerLink]="['/listUser']" routerLinkActive="active">
       <a class="nav-link">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span class="pointer">Manage Users</span></a>
     </li>
-    <li class="nav-item " [routerLink]="['/listUsersTeam']" routerLinkActive="active">
+    <li *ngIf="adminTeam" class="nav-item " [routerLink]="['/listUsersTeam']" routerLinkActive="active">
       <a class="nav-link">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span class="pointer">Manage Team Users</span></a>
     </li>
-    <li class="nav-item" [routerLink]="['/listTeam']" routerLinkActive="active">
+    <li *ngIf="admin" class="nav-item" [routerLink]="['/listTeam']" routerLinkActive="active">
       <a class="nav-link">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span class="pointer">Teams</span></a>
@@ -48,7 +48,7 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span class="pointer">Categories</span></a>
     </li>
-    <li class="nav-item" [routerLink]="['/myCategory']" routerLinkActive="active">
+    <li *ngIf="adminCategory" class="nav-item" [routerLink]="['/addCategory',user.categoryId]" routerLinkActive="active">
       <a class="nav-link">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span class="pointer">My Category</span></a>

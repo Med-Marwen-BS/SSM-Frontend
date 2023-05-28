@@ -18,6 +18,7 @@ export class ListUsersTeamComponent implements OnInit{
   isLoggedIn = true;
   team:any
   user:any
+  adminTeam=false
 
   constructor(private teamService : TeamService ,private  authService:AuthService,private router:Router){}
   ngOnInit(): void {
@@ -27,6 +28,10 @@ export class ListUsersTeamComponent implements OnInit{
     this.authService.getUserByToken().subscribe(data => {
       this.user = data.data;
       this.team = data.data.team
+      this.adminTeam = this.team.creatorId == this.user.id
+      if(!this.adminTeam){
+        this.router.navigate(['login'])
+      }
       this.authService.getUsersByTeamId(this.team.id).subscribe(userList=>{
         console.log(userList);
         

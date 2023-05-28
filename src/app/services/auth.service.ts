@@ -23,6 +23,10 @@ export class AuthService {
 
    }
 
+   update(id:any,user:any): Observable<any> {
+    return this.http.put<any>(environment.url_gateway+"user-service/update/"+id,user);
+  }
+
   register(registerRequest:RegisterRequest): Observable<any> {
     return this.http.post<any>(environment.url_gateway+"user-service/auth/register",registerRequest);
   }
@@ -99,7 +103,7 @@ export class AuthService {
       console.log(data);
       if(data.data == false) console.log("works");
       else if(data.data == true) this.logout();
-    })
+    },()=>{})
     return localStorage.getItem('token')?true:false;
   }
 }
