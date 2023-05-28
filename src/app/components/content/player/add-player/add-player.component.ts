@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
   templateUrl: './add-player.component.html',
   styleUrls: ['./add-player.component.css']
 })
-export class AddPlayerComponent {
+export class AddPlayerComponent implements OnInit {
   model!:any;
   isLoggedIn = true;
   categotyId!:any

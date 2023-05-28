@@ -53,6 +53,15 @@ export class AuthService {
     return this.http.post<any>(environment.url_gateway+"user-service/changeRole",{},{params: params});
   }
 
+  changeCategoryRole(id:any,adminCategory:any,categoryId:any): Observable<any> {
+    let params = new HttpParams()
+    .set('id', id)
+    .set('categoryId', categoryId)
+    .set('adminCategory', adminCategory);
+
+    return this.http.post<any>(environment.url_gateway+"user-service/changeCategoryRole",{},{params: params});
+  }
+
   getAllUsers(): Observable<any> {
     return this.http.get<any>(environment.url_gateway+"user-service/getAllUsers");
   }
@@ -68,6 +77,10 @@ export class AuthService {
   }
   leaveTeam(): Observable<any> {
     return this.http.get<any>(environment.url_gateway+"user-service/leaveTeam");
+  }
+
+  deleteUserFromTeam(id:string): Observable<any> {
+    return this.http.get<any>(environment.url_gateway+"user-service/deleteUserFromTeam/"+id);
   }
   
   setLoginInformations(token:string,username:string){

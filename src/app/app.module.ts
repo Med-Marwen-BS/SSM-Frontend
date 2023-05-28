@@ -28,6 +28,9 @@ import { MatchLandingComponent } from './components/content/match/match-landing/
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListUserComponent } from './components/content/users/list-user/list-user.component';
 import { ListUsersTeamComponent } from './components/content/users/list-users-team/list-users-team.component';
+import { DetailUserComponent } from './components/content/users/detail-user/detail-user.component';
+import { MyProfileComponent } from './components/content/users/my-profile/my-profile.component';
+import { MyCategoryComponent } from './components/content/users/my-category/my-category.component';
 
 
 
@@ -53,7 +56,10 @@ import { ListUsersTeamComponent } from './components/content/users/list-users-te
     MatchLandingComponent,
     DashboardComponent,
     ListUserComponent,
-    ListUsersTeamComponent
+    ListUsersTeamComponent,
+    DetailUserComponent,
+    MyProfileComponent,
+    MyCategoryComponent
   ],
   imports: [
     BrowserModule,
