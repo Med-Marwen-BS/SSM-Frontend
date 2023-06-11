@@ -29,6 +29,13 @@ export class TopbarComponent implements OnInit{
     })
   }
 
+  refresh(){
+    this.authService.getNotifications(this.user.id).subscribe(data=>{
+      this.notifications = data.reverse()
+      this.notSize = this.notifications.filter((n:any)=>n.status!="READ").length
+    })
+  }
+
 
   logout(){
     this.authService.logout();
@@ -38,10 +45,8 @@ export class TopbarComponent implements OnInit{
 
   read(id:any){
     debugger
-    this.authService.readNotifications(id).subscribe((data)=>{
-    },()=>{},()=>{ 
-    });
-    window.location.reload()
+    this.authService.readNotifications(id).subscribe(()=>{this.refresh()});
+    //window.location.reload()
   }
 
 }
