@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -34,7 +35,7 @@ export class MyTeamComponent implements OnInit {
 
 
   constructor(private teamService: TeamService, private activatedroute: ActivatedRoute, private config: NgSelectConfig,
-    private authService: AuthService, private router: Router) { }
+    private authService: AuthService, private router: Router,private location: Location) { }
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLogged();
     if (!this.isLoggedIn) this.router.navigate(['/login'])
@@ -166,6 +167,8 @@ export class MyTeamComponent implements OnInit {
         },err=>{
           
     
+        },()=>{
+          window.location.reload();
         })
       }
     })

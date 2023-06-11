@@ -86,6 +86,13 @@ export class AuthService {
   deleteUserFromTeam(id:string): Observable<any> {
     return this.http.get<any>(environment.url_gateway+"user-service/deleteUserFromTeam/"+id);
   }
+
+  getNotifications(id:string): Observable<any> {
+    return this.http.get<any>(environment.url_gateway+"team-service/notification/getAll/"+id);
+  }
+  readNotifications(id:string): Observable<any> {
+    return this.http.get<any>(environment.url_gateway+"team-service/notification/changeStatus/"+id);
+  }
   
   setLoginInformations(token:string,username:string){
     localStorage.setItem('token',token)
