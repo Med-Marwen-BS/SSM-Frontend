@@ -16,11 +16,13 @@ import { ListUserComponent } from './components/content/users/list-user/list-use
 import { ListUsersTeamComponent } from './components/content/users/list-users-team/list-users-team.component';
 import { MyProfileComponent } from './components/content/users/my-profile/my-profile.component';
 import { DetailUserComponent } from './components/content/users/detail-user/detail-user.component';
+import { ResetPasswordComponent } from './components/main/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'reset', component: ResetPasswordComponent },
   { path: 'addTeam', component:AddTeamComponent },
   { path: 'addTeam/:id', component:AddTeamComponent },
   { path: 'myTeam', component:MyTeamComponent },

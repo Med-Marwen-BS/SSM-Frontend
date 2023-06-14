@@ -39,7 +39,8 @@
                                     <option value="USER">User</option>
                                   </select>
                             </td>
-                            <td>{{ team.team.name }}</td>
+                            <td *ngIf="team.team != null">{{ team.team.name }}</td>
+                            <td *ngIf="team.team == null">-</td>
                             <td>
                                 <input (change)="actif_blockUser(team)" class="text-end" [(ngModel)]="team.enabled" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
                                 <!-- <a class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-edit"></i></a> -->

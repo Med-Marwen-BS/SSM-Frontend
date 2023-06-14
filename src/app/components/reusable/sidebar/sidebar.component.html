@@ -2,27 +2,37 @@
   <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-      <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
-      </div>
-      <div class="sidebar-brand-text mx-3">SSM</div>
-    </a>
+    <div >
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+
+     
+        <div class="sidebar-brand-text mx-3" style="background-color: rgb(239, 236, 251);">
+          <img src="assets\icons\logo.png" style="max-height: 70px;background-color: rgb(239, 236, 251);float: left;
+          ">
+          <!-- <img style="max-height: 70px;" src="assets\icons\logo.png" 
+          alt="..." class="card-img-center"> -->
+        </div>
+      </a>
+    </div>
+
+    
+
+
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item " [routerLink]="['/dashboard']" routerLinkActive="active">
+    <li *ngIf="team!=null" class="nav-item " [routerLink]="['/dashboard']" routerLinkActive="active">
       <a class="nav-link">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span class="pointer">Dashboard</span></a>
     </li>
-    <li class="nav-item " [routerLink]="['/myProfile']" routerLinkActive="active">
+    <!-- <li class="nav-item " [routerLink]="['/myProfile']" routerLinkActive="active">
       <a class="nav-link">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span class="pointer">My Profile</span></a>
-    </li>
+    </li> -->
     <li *ngIf="admin" class="nav-item " class="nav-item " [routerLink]="['/listUser']" routerLinkActive="active">
       <a class="nav-link">
         <i class="fas fa-fw fa-tachometer-alt"></i>

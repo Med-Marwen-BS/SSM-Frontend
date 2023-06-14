@@ -20,6 +20,8 @@ export class DashboardComponent implements OnInit{
   calledPlayerList:any=[];
   user:any
   team:any
+  playerListSize = 0;
+  message=""
   
 
   constructor(private playerService:PlayerStatService,private categoryService:CategoryService,private activatedroute:ActivatedRoute,private config: NgSelectConfig,
@@ -33,6 +35,8 @@ export class DashboardComponent implements OnInit{
       this.team = data.data.team
       this.playerService.getStats(this.team.id).subscribe(data=>{
         this.playerList=data
+        this.playerListSize=data.length
+        this.message="Stats are empty"
       })
   
     

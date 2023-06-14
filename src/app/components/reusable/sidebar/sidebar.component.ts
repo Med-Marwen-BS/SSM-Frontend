@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class SidebarComponent implements OnInit{
   admin=false
   adminTeam =false
 
-  constructor(private authService:AuthService){}
+  constructor(private authService:AuthService,private router:Router){}
   ngOnInit(): void {
     this.authService.getUserByToken().subscribe(data=>{
       this.user=data.data
@@ -22,6 +23,7 @@ export class SidebarComponent implements OnInit{
       this.adminCategory=this.user.adminCategory
       this.admin = this.user.role=='SUPER_ADMIN' || this.user.role=='ADMIN'
       this.adminTeam = this.team.creatorId == this.user.id
+      if(this.team==null) this.router.navigate(['myTeam'])
       
     })
   }

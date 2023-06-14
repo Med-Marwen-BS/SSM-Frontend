@@ -34,6 +34,10 @@ export class AuthService {
     return this.http.post<any>(environment.url_gateway+"user-service/auth/signIn",loginReq);
   }
 
+  reset(loginReq:LoginReq): Observable<any> {
+    return this.http.put<any>(environment.url_gateway+"user-service/auth/reset/"+loginReq.username,{});
+  }
+
   addTeamToUser(teamId:string,email:string): Observable<any> {
     return this.http.post<any>(environment.url_gateway+"user-service/addTeamToUser",{teamId:teamId,email:email});
   }
