@@ -38,6 +38,8 @@
                             <td>{{ team.country}}</td>
                             <td>
                                 <a class="edit" [routerLink]="['/addTeam',team.id]" title="Edit" data-toggle="tooltip"><i class="fas fa-edit" style="color: #149050;"></i></a>
+                                <a (click)="deleteUser(user)" class="delete" title="Delete user from team" data-toggle="tooltip"><i class="fas fa-sharp fa-solid fa-trash" style="color: #de1717;"></i></a>
+
                                 <!-- <a class="delete" title="Delete" data-toggle="tooltip"><i class="fas fa-edit"></i></a> -->
                             </td>
                         </tr>
