@@ -86,4 +86,43 @@ export class ListCategoriesComponent implements OnInit {
 
   }
 
+  deleteUser(user:any){
+    let msg1="Confirm delete from team!"
+    let msg2="delete category "
+
+    Swal.fire({
+      title: msg1,
+      text: msg2,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      // if (result.isConfirmed) {
+      //   this.authService.deleteUserFromTeam(user.id).subscribe(data=>{
+      //     this.ngOnInit()
+      //     Swal.fire({
+      //       position: 'top-end',
+      //       icon: 'success',
+      //       title: 'User '+user.username+' deleted',
+      //       showConfirmButton: false,
+      //       timer: 1500
+      //     })
+    
+      //   },()=>{
+      //     Swal.fire({
+      //       position: 'top-end',
+      //       icon: 'error',
+      //       title: 'Try Again',
+      //       showConfirmButton: false,
+      //       timer: 1500
+      //     })
+    
+      //   })
+        
+      // }
+    })
+  }
+
 }
