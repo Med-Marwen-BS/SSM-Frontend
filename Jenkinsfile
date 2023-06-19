@@ -11,7 +11,7 @@ node {
    withCredentials([usernamePassword(credentialsId: '829fc465-47c0-4903-a6b0-436f2ad50cdb', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
        
            bat 'docker build -t marwen95/ssm:latest .'
-           bat "docker login -u %USERNAME% -p %PASSWORD%"
+           bat 'docker login -u marwen95 -p maratanna1920'
            bat 'docker push marwen95/ssm:latest'
       }
       
